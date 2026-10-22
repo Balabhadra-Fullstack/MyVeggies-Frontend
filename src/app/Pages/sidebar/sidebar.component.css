@@ -1,0 +1,362 @@
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+  width: 240px;
+  min-width: 240px;
+  height: 100%;
+
+  background: #102a43;
+  color: white;
+
+  transition: width 0.3s ease, min-width 0.3s ease;
+
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
+/* =========================
+   FINAL COLLAPSED SIDEBAR
+========================= */
+
+.sidebar.collapsed {
+  width: 70px !important;
+  min-width: 70px !important;
+  max-width: 70px !important;
+}
+
+.sidebar.collapsed .logo span,
+.sidebar.collapsed .menu-text {
+  display: none !important;
+}
+
+.sidebar.collapsed .sidebar-top {
+  justify-content: center;
+}
+
+.sidebar.collapsed .menu > a {
+  justify-content: center;
+  padding: 0;
+}
+
+.sidebar.collapsed .nav-link {
+  justify-content: center;
+  padding: 0;
+}
+
+.sidebar.collapsed .nav-link .arrow {
+  display: none;
+}
+
+/* =========================
+   TOP
+========================= */
+
+.sidebar-top {
+  height: 65px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 15px;
+
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+
+.logo {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  font-size: 17px;
+  font-weight: 600;
+}
+
+
+.menu-btn {
+  border: none;
+  background: transparent;
+
+  color: white;
+
+  font-size: 22px;
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+.menu {
+  padding: 15px 10px;
+}
+
+
+/* Normal menu links */
+
+.menu > a {
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 0 12px;
+
+  margin-bottom: 5px;
+
+  color: white;
+
+  text-decoration: none;
+
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  transition: 0.2s ease;
+}
+
+
+/* Hover */
+
+.menu > a:hover {
+  background: #05a95a;
+}
+
+
+/* Active */
+
+.menu > a.active {
+  background: hsl(146, 91%, 46%);
+}
+
+
+/* Icon */
+
+.menu > a span:first-child {
+  width: 25px;
+
+  text-align: center;
+
+  font-size: 18px;
+}
+
+
+/* =========================
+   NAV ITEM
+   PURCHASE / PAYMENT
+========================= */
+
+.nav-item {
+  position: relative;
+
+  width: 100%;
+
+  margin-bottom: 5px;
+}
+
+
+/* =========================
+   MAIN NAV LINK
+========================= */
+
+.nav-link {
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 0 12px;
+
+  color: white;
+
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  transition: 0.2s ease;
+}
+
+
+.nav-link:hover {
+  background: #05a95a;
+}
+
+
+/* Main icon */
+
+.nav-link > span:first-child {
+  width: 25px;
+
+  text-align: center;
+
+  font-size: 18px;
+}
+
+
+/* =========================
+   ARROW
+========================= */
+
+.arrow {
+  margin-left: auto;
+
+  font-size: 10px;
+}
+
+
+/* Default */
+
+.arrow-left {
+  display: none;
+}
+
+
+/* Hover */
+
+.nav-item:hover .arrow-right {
+  display: none;
+}
+
+.nav-item:hover .arrow-left {
+  display: inline;
+}
+
+
+/* =========================
+   RIGHT SIDE SUBMENU
+========================= */
+
+.right-submenu {
+  display: none;
+
+  position: absolute;
+
+  left: 100%;
+  top: 0;
+
+  width: 200px;
+
+  background: #102a43;
+
+  padding: 8px 0;
+
+  border-radius: 0 6px 6px 0;
+
+  box-shadow:
+    4px 4px 12px rgba(0,0,0,0.25);
+
+  z-index: 1000;
+}
+
+
+/* =========================
+   SHOW SUBMENU ON HOVER
+========================= */
+
+.nav-item:hover > .right-submenu {
+  display: block;
+}
+
+
+/* =========================
+   SUBMENU LINKS
+========================= */
+
+.right-submenu a {
+  display: block;
+
+  padding: 12px 16px;
+
+  color: #d9e2ec;
+
+  text-decoration: none;
+
+  font-size: 14px;
+
+  white-space: nowrap;
+
+  transition: 0.2s ease;
+}
+
+
+/* Submenu hover */
+
+.right-submenu a:hover {
+  background: #05a95a;
+
+  color: white;
+}
+
+
+/* Active submenu */
+
+.right-submenu a.active {
+  background: #05a95a;
+
+  color: white;
+}
+
+
+/* =========================
+   COLLAPSED SIDEBAR
+========================= */
+
+.sidebar.collapsed .logo span,
+.sidebar.collapsed .menu-text {
+  display: none;
+}
+
+
+/* Top */
+
+.sidebar.collapsed .sidebar-top {
+  justify-content: center;
+}
+
+
+/* Normal menu */
+
+.sidebar.collapsed .menu > a {
+  justify-content: center;
+
+  padding: 0;
+}
+
+
+/* Purchase / Payment */
+
+.sidebar.collapsed .nav-link {
+  justify-content: center;
+
+  padding: 0;
+}
+
+
+/* Hide arrow in collapsed */
+
+.sidebar.collapsed .nav-link .arrow {
+  display: none;
+}
+
+
+/* =========================
+   COLLAPSED SUBMENU
+========================= */
+
+.sidebar.collapsed .right-submenu {
+  left: 70px;
+}

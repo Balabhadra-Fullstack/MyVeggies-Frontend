@@ -1,0 +1,199 @@
+<div class="existing-supplier-page">
+
+  <!-- =========================
+       PAGE HEADER
+  ========================== -->
+
+  <div class="page-header">
+
+    <div>
+      <h1>Existing Suppliers</h1>
+
+      <p>
+        Manage suppliers, purchases and payments
+      </p>
+    </div>
+
+    <button
+      type="button"
+      class="back-btn"
+      (click)="goBack()">
+
+      <i class="bi bi-arrow-left"></i>
+      Back
+
+    </button>
+
+  </div>
+
+
+  <!-- =========================
+       SEARCH SECTION
+  ========================== -->
+
+  <div class="search-section">
+
+    <div class="search-box">
+
+      <i class="bi bi-search"></i>
+
+      <input
+  type="text"
+  [(ngModel)]="searchText"
+  (input)="searchSupplier()"
+  placeholder="Search supplier by name "
+  autocomplete="off">
+
+    </div>
+
+    <div class="supplier-count">
+
+      <span>
+        {{ suppliers.length }}
+      </span>
+
+      Suppliers
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       SUPPLIER TABLE
+  ========================== -->
+
+  <div class="supplier-table-container">
+
+    <!-- TABLE HEADER -->
+
+    <div class="supplier-table-header">
+
+      <div class="supplier-column">
+        Supplier
+      </div>
+
+      <div>
+        Total Purchase
+      </div>
+
+      <div>
+        Total Paid
+      </div>
+
+      <div>
+        Due
+      </div>
+
+      <div class="action-column">
+      </div>
+
+    </div>
+
+
+    <!-- SUPPLIER ROW -->
+
+    <div
+      class="supplier-row"
+      *ngFor="let supplier of suppliers"
+      (click)="openSupplier(supplier)"
+      >
+
+
+      <!-- SUPPLIER -->
+
+      <div class="supplier-column supplier-details">
+
+        <div class="supplier-avatar">
+
+          {{ supplier.Suppliername.charAt(0).toUpperCase() }}
+          
+        </div>
+
+        <div>
+
+          <h3>
+            {{ supplier.Suppliername}}
+          </h3>
+
+          <p>
+
+            <i class="bi bi-telephone"></i>
+
+            {{ supplier.mobileNumber }}
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- TOTAL PURCHASE -->
+
+      <div class="amount">
+
+        ₹{{ supplier.TotalAmountPurchaesd }}
+
+      </div>
+
+
+      <!-- TOTAL PAID -->
+
+      <div class="amount paid">
+
+        ₹{{ supplier.TotalAmountPaidByme }}
+
+      </div>
+
+
+      <!-- DUE -->
+
+      <div
+        class="amount"
+        [class.due]="supplier.DueAmount > 0"
+        [class.clear]="supplier.DueAmount === 0">
+
+        ₹{{ supplier.DueAmount}}
+
+      </div>
+
+
+      <!-- ARROW -->
+
+      <div class="action-column">
+
+        <i class="bi bi-chevron-right"></i>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         EMPTY STATE
+    ========================== -->
+
+    <div
+      class="empty-state"
+      *ngIf="suppliers.length === 0">
+
+      <div class="empty-icon">
+
+        <i class="bi bi-people"></i>
+
+      </div>
+
+      <h3>
+        No suppliers found
+      </h3>
+
+      <p>
+        Try searching with another supplier name or mobile number.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>

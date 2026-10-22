@@ -1,0 +1,168 @@
+
+<div class="payment-page">
+
+  <div class="payment-card">
+
+    <!-- Header -->
+    <div class="payment-header">
+      <div class="header-icon">
+        <i class="bi bi-wallet2"></i>
+      </div>
+
+      <div>
+        <h2>Customer Payment</h2>
+        <p>Record and manage customer payments</p>
+      </div>
+    </div>
+
+    <div class="form-divider"></div>
+
+    <!-- Customer Live Search -->
+    <div class="form-group">
+      <label>
+        <i class="bi bi-person me-1"></i>
+        Customer Name
+      </label>
+
+      <div class="customer-search">
+
+        <div class="search-input-wrapper">
+          <i class="bi bi-search search-icon"></i>
+
+          <input
+            type="text"
+            class="form-control search-input"
+            [(ngModel)]="customerSearch"
+            (input)="searchCustomer()"
+            placeholder="Search customer by name..."
+            autocomplete="off"
+          />
+
+          <button
+            type="button"
+            class="clear-search"
+            *ngIf="customerSearch"
+            (click)="customerSearch = ''; payment.id= null; filteredCustomers = []; showCustomerDropdown = false"
+            aria-label="Clear customer search">
+
+            <i class="bi bi-x-circle"></i>
+
+          </button>
+        </div>
+
+        <!-- Search Results -->
+        <div
+          class="customer-dropdown"
+          *ngIf="showCustomerDropdown">
+
+          <div
+            class="customer-option"
+            *ngFor="let c of filteredCustomers"
+            (click)="selectCustomer(c)">
+
+            <div class="customer-avatar">
+              <i class="bi bi-person"></i>
+            </div>
+
+            <div class="customer-info">
+              <span class="customer-name">{{ c.name }}</span>
+              <small>Customer Number: {{ c.mobileNumber }}</small>
+            </div>
+
+            <i class="bi bi-arrow-up-left select-icon"></i>
+
+          </div>
+
+          <div
+            class="no-result"
+            *ngIf="filteredCustomers.length === 0">
+
+            <i class="bi bi-person-exclamation"></i>
+            <span>No customer found</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <small class="field-hint" *ngIf="payment.id">
+        <i class="bi bi-check-circle-fill"></i>
+        Customer selected successfully
+      </small>
+    </div>
+
+    <!-- Payment Amount -->
+    <div class="form-group">
+      <label>
+        <i class="bi bi-currency-rupee me-1"></i>
+        Payment Amount
+      </label>
+
+      <div class="input-wrapper">
+        <span class="input-prefix">₹</span>
+
+        <input
+          type="number"
+          class="form-control prefixed-input"
+          [(ngModel)]="payment.paymentamount"
+          placeholder="Enter payment amount"
+          min="0.01"
+          step="0.01"
+        />
+        
+      </div>
+    </div>
+
+    <!-- Payment Method -->
+    <div class="form-group">
+      <label>
+        <i class="bi bi-credit-card me-1"></i>
+        Payment Method
+      </label>
+
+      <select
+        class="form-control"
+        [(ngModel)]="payment.paymentmethod">
+
+        <option value="">Select payment method</option>
+        <option value="CASH">Cash</option>
+        <option value="UPI">UPI</option>
+        <option value="BANK">Bank Transfer</option>
+
+      </select>
+    </div>
+
+    <!-- Payment Date -->
+    <div class="form-group">
+      <label>
+        <i class="bi bi-calendar3 me-1"></i>
+        Payment Date
+      </label>
+
+      <input
+        type="date"
+        class="form-control"
+        [(ngModel)]="payment.paymenttime"
+      />
+    </div>
+
+    <!-- Submit Button -->
+    <button
+      type="button"
+      class="btn-payment"
+      (click)="savePayment()">
+
+      <i class="bi bi-check-circle me-2"></i>
+      Save Payment
+
+    </button>
+
+    <p class="footer-note">
+      <i class="bi bi-shield-check me-1"></i>
+      Please verify payment details before saving.
+    </p>
+
+  </div>
+
+</div>

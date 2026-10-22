@@ -1,0 +1,187 @@
+.purchase-history {
+  padding: 24px;
+  background: #f5f7fa;
+  min-height: 100%;
+}
+
+/* Header */
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.page-header h2 {
+  margin: 0;
+  color: #102a43;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+/* Date Filter */
+
+.date-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.date-filter label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #486581;
+}
+
+.date-filter input {
+  padding: 10px 14px;
+  border: 1px solid #bcccdc;
+  border-radius: 7px;
+  background: white;
+  color: #243b53;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+}
+
+.date-filter input:focus {
+  border-color: #2680c2;
+  box-shadow: 0 0 0 2px rgba(38, 128, 194, 0.12);
+}
+
+
+/* Table Container */
+
+.purchase-table {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+
+/* Table */
+
+.purchase-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.purchase-table th {
+  background: #102a43;
+  color: white;
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.purchase-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #e6e8eb;
+  color: #334e68;
+  font-size: 14px;
+}
+
+.purchase-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+
+/* Items */
+
+.purchase-table td span {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.purchase-table td span:last-child {
+  margin-bottom: 0;
+}
+
+
+/* Amount */
+
+.purchase-table td:nth-child(3) {
+  font-weight: 600;
+  color: #102a43;
+}
+
+
+/* Edit Button */
+
+.edit-btn {
+  padding: 7px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #2680c2;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.edit-btn:hover {
+  background: #186faf;
+}
+
+
+/* No Purchases */
+
+.no-purchase {
+  background: white;
+  border-radius: 10px;
+  padding: 60px 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.empty-icon {
+  font-size: 42px;
+  margin-bottom: 12px;
+}
+
+.no-purchase h3 {
+  margin: 0 0 8px;
+  color: #243b53;
+  font-size: 20px;
+}
+
+.no-purchase p {
+  margin: 0;
+  color: #829ab1;
+  font-size: 14px;
+}
+
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+  .purchase-history {
+    padding: 16px;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .date-filter {
+    width: 100%;
+  }
+
+  .date-filter input {
+    flex: 1;
+  }
+
+  .purchase-table {
+    overflow-x: auto;
+  }
+
+  .purchase-table table {
+    min-width: 650px;
+  }
+}

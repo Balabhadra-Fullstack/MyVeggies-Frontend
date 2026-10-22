@@ -1,0 +1,306 @@
+/* =========================
+   SALE HISTORY
+========================= */
+
+.sale-history {
+  min-height: 100%;
+  padding: 35px 40px;
+  background: #f5f7fa;
+}
+
+
+/* =========================
+   PAGE HEADER
+========================= */
+
+.sale-history .page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 30px;
+}
+
+.sale-history .page-header h2 {
+  margin: 0;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  color: #010f2c;
+}
+
+
+/* =========================
+   DATE FILTER
+========================= */
+
+.sale-history .date-filter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sale-history .date-filter label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.sale-history .date-filter input {
+  padding: 9px 12px;
+
+  border: 1px solid #d9dee5;
+  border-radius: 8px;
+
+  background: white;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition: 0.2s;
+}
+
+.sale-history .date-filter input:focus {
+  border-color: #60a5fa;
+
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+/* =========================
+   SALE TABLE CONTAINER
+========================= */
+
+.sale-history .sale-table {
+  width: 100%;
+
+  background: white;
+
+  border-radius: 12px;
+
+  overflow-x: auto;
+
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.sale-history table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  min-width: 700px;
+}
+
+
+/* =========================
+   TABLE HEADER
+========================= */
+
+.sale-history thead {
+  background: #eff6ff;
+}
+
+.sale-history th {
+  padding: 15px 18px;
+
+  text-align: left;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  color: #374151;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+
+/* =========================
+   TABLE BODY
+========================= */
+
+.sale-history td {
+  padding: 15px 18px;
+
+  font-size: 14px;
+
+  color: #4b5563;
+
+  border-bottom: 1px solid #f0f1f3;
+
+  vertical-align: middle;
+}
+
+.sale-history tbody tr {
+  transition: 0.2s;
+}
+
+.sale-history tbody tr:hover {
+  background: #f8fafc;
+}
+
+.sale-history tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* =========================
+   ITEMS
+========================= */
+
+.sale-history .item-text {
+  display: inline-block;
+
+  margin-right: 8px;
+  margin-bottom: 4px;
+
+  padding: 5px 9px;
+
+  background: #f1f5f9;
+
+  border-radius: 6px;
+
+  font-size: 12px;
+
+  color: #475569;
+}
+
+
+/* =========================
+   TOTAL AMOUNT
+========================= */
+
+.sale-history td:nth-child(3) {
+  font-weight: 600;
+
+  color: #2563eb;
+}
+
+
+/* =========================
+   EDIT BUTTON
+========================= */
+
+.sale-history .edit-btn {
+  padding: 7px 15px;
+
+  border: 1px solid #2563eb;
+
+  border-radius: 7px;
+
+  background: white;
+
+  color: #2563eb;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.sale-history .edit-btn:hover {
+  background: #2563eb;
+
+  color: white;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================
+   NO SALE
+========================= */
+
+.sale-history .no-sale {
+  background: white;
+
+  border-radius: 12px;
+
+  padding: 55px 20px;
+
+  text-align: center;
+
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.sale-history .empty-icon {
+  font-size: 42px;
+
+  margin-bottom: 10px;
+}
+
+.sale-history .no-sale h3 {
+  margin: 5px 0 8px;
+
+  font-size: 20px;
+
+  color: #374151;
+}
+
+.sale-history .no-sale p {
+  margin: 0;
+
+  color: #9ca3af;
+
+  font-size: 14px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+  .sale-history {
+    padding: 25px 20px;
+  }
+
+  .sale-history .page-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 18px;
+  }
+
+  .sale-history .date-filter {
+    width: 100%;
+  }
+
+  .sale-history .date-filter input {
+    flex: 1;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .sale-history {
+    padding: 20px 12px;
+  }
+
+  .sale-history .page-header h2 {
+    font-size: 23px;
+  }
+
+  .sale-history .date-filter {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .sale-history .date-filter input {
+    width: 100%;
+  }
+
+}

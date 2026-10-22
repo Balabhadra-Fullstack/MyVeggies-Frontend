@@ -1,0 +1,193 @@
+<div class="existing-supplier-page">
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <div class="page-header">
+
+    <div>
+      <h1>Existing Customers</h1>
+      <p>Manage customers, sales and payments</p>
+    </div>
+
+    <button
+      type="button"
+      class="back-btn"
+      (click)="goBack()">
+
+      <i class="bi bi-arrow-left"></i>
+      Back
+
+    </button>
+
+  </div>
+
+
+  <!-- =========================
+       SEARCH
+  ========================== -->
+
+  <div class="search-section">
+
+    <div class="search-box">
+
+      <i class="bi bi-search"></i>
+
+      <input
+        type="text"
+        [(ngModel)]="searchText"
+        (input)="searchCustomer()"
+        placeholder="Search customer by name"
+        autocomplete="off">
+
+    </div>
+
+
+    <div class="supplier-count">
+
+      <span>{{ customers.length }}</span>
+
+      Customers
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       TABLE
+  ========================== -->
+
+  <div class="supplier-table-container">
+
+
+    <!-- TABLE HEADER -->
+
+    <div class="supplier-table-header">
+
+      <div class="supplier-column">
+        Customer
+      </div>
+
+      <div>
+        Total Sale
+      </div>
+
+      <div>
+        Total Paid
+      </div>
+
+      <div>
+        Due
+      </div>
+
+      <div class="action-column"></div>
+
+    </div>
+
+
+    <!-- CUSTOMER ROW -->
+
+    <div
+      class="supplier-row"
+      *ngFor="let customer of customers"
+      (click)="openCustomer(customer)">
+
+
+      <!-- CUSTOMER -->
+
+      <div class="supplier-column supplier-details">
+
+        <div class="supplier-avatar">
+
+          {{ customer.name?.charAt(0)?.toUpperCase() }}
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            {{ customer.name }}
+          </h3>
+
+          <p>
+
+            <i class="bi bi-telephone"></i>
+
+            {{ customer.mobileNumber }}
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- TOTAL SALE -->
+
+      <div class="amount">
+
+        ₹{{ customer.totalSale }}
+
+      </div>
+
+
+      <!-- TOTAL PAID -->
+
+      <div class="amount paid">
+
+        ₹{{ customer.totalPaid }}
+
+      </div>
+
+
+      <!-- DUE -->
+
+      <div
+        class="amount"
+        [class.due]="customer.dueAmount > 0"
+        [class.clear]="customer.dueAmount === 0">
+
+        ₹{{ customer.dueAmount }}
+
+      </div>
+
+
+      <!-- ACTION -->
+
+      <div class="action-column">
+
+        <i class="bi bi-chevron-right"></i>
+
+      </div>
+
+    </div>
+
+
+    <!-- EMPTY -->
+
+    <div
+      class="empty-state"
+      *ngIf="customers.length === 0">
+
+      <div class="empty-icon">
+
+        <i class="bi bi-people"></i>
+
+      </div>
+
+      <h3>
+        No customers found
+      </h3>
+
+      <p>
+        Try searching with another customer name or mobile number.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,818 @@
+/* =====================================================
+   PAGE
+===================================================== */
+
+.statement-page {
+  min-height: 100%;
+  padding: 32px 40px;
+  background: #f5f7fa;
+  box-sizing: border-box;
+}
+
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.statement-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.header-content h2 {
+  margin: 0;
+  font-size: 27px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.header-content p {
+  margin: 6px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+
+
+/* =====================================================
+   HEADER BUTTONS
+===================================================== */
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.header-actions button {
+  border: none;
+  padding: 11px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.whatsapp-btn {
+  background: #e9f8ef;
+  color: #16803a;
+}
+
+.whatsapp-btn:hover {
+  background: #d8f3e2;
+}
+
+.print-btn {
+  background: #1f2937;
+  color: white;
+}
+
+.print-btn:hover {
+  background: #111827;
+}
+
+
+
+/* =====================================================
+   SUPPLIER INFORMATION
+===================================================== */
+
+.supplier-info-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  padding: 22px 25px;
+  margin-bottom: 24px;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.supplier-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.info-label {
+  font-size: 12px;
+  color: #8a94a6;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.supplier-info-item strong {
+  color: #263238;
+  font-size: 16px;
+}
+
+
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.summary-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  background: white;
+  border-radius: 12px;
+
+  padding: 22px;
+
+  border: 1px solid #e5e7eb;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.summary-icon {
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #f1f5f9;
+  font-size: 22px;
+}
+
+.summary-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.summary-content span {
+  font-size: 13px;
+  color: #7b8794;
+}
+
+.summary-content strong {
+  font-size: 21px;
+  color: #263238;
+}
+
+
+
+/* =====================================================
+   DETAILS GRID
+===================================================== */
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-bottom: 24px;
+}
+
+
+
+/* =====================================================
+   DETAILS CARD
+===================================================== */
+
+.details-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  padding: 22px;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+
+
+/* =====================================================
+   CARD TITLE
+===================================================== */
+
+.card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 18px;
+}
+
+.card-title h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #263238;
+}
+
+.card-title p {
+  margin: 4px 0 0;
+  color: #8a94a6;
+  font-size: 12px;
+}
+
+.card-icon {
+  font-size: 23px;
+}
+
+
+
+/* =====================================================
+   TRANSACTION
+===================================================== */
+
+.transaction {
+  display: grid;
+  grid-template-columns: 105px 1fr auto;
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 15px 0;
+
+  border-top: 1px solid #edf0f2;
+}
+
+.transaction-date {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.transaction-date strong {
+  font-size: 13px;
+  color: #374151;
+}
+
+.transaction-date small {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.transaction-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.transaction-info strong {
+  font-size: 14px;
+  color: #263238;
+}
+
+.transaction-info span {
+  font-size: 12px;
+  color: #8a94a6;
+}
+
+.transaction-amount {
+  font-weight: 700;
+  font-size: 14px;
+  color: #374151;
+}
+
+.payment-amount {
+  font-weight: 700;
+  font-size: 14px;
+  color: #16803a;
+}
+
+
+
+/* =====================================================
+   EMPTY MESSAGE
+===================================================== */
+
+.empty-message {
+  min-height: 100px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: #9ca3af;
+}
+
+.empty-message span {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.empty-message p {
+  margin: 0;
+  font-size: 13px;
+}
+
+
+
+/* =====================================================
+   COMMISSION CARD
+===================================================== */
+
+.commission-card {
+  background: white;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  padding: 23px;
+
+  margin-bottom: 30px;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+
+
+/* =====================================================
+   COMMISSION HEADER
+===================================================== */
+
+.commission-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.commission-header h3 {
+  margin: 0;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  color: #263238;
+}
+
+.commission-header p {
+  margin: 5px 0 0;
+
+  color: #8a94a6;
+  font-size: 13px;
+}
+
+.commission-icon {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #f3f0ff;
+
+  font-size: 21px;
+}
+
+
+
+/* =====================================================
+   COMMISSION TABLE
+===================================================== */
+
+.commission-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.commission-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.commission-table th {
+  padding: 13px 15px;
+
+  text-align: left;
+
+  background: #f8fafc;
+
+  color: #6b7280;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.commission-table td {
+  padding: 15px;
+
+  border-bottom: 1px solid #edf0f2;
+
+  color: #4b5563;
+
+  font-size: 13px;
+}
+
+.commission-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.commission-table tbody tr:hover {
+  background: #fafafa;
+}
+
+.commission-table td:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.commission-table td:first-child strong {
+  font-size: 13px;
+  color: #374151;
+}
+
+.commission-table td:first-child small {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.item-name {
+  font-weight: 600;
+  color: #374151;
+}
+
+.commission-amount {
+  color: #6d4aff;
+}
+
+
+
+/* =====================================================
+   COMMISSION TOTAL
+===================================================== */
+
+.commission-total {
+  margin-top: 18px;
+
+  padding-top: 17px;
+
+  border-top: 1px solid #e5e7eb;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  gap: 15px;
+}
+
+.commission-total span {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.commission-total strong {
+  color: #6d4aff;
+  font-size: 18px;
+}
+
+
+
+/* =====================================================
+   COMMISSION EMPTY
+===================================================== */
+
+.commission-empty {
+  min-height: 110px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 15px;
+
+  border: 1px dashed #d9dee5;
+
+  border-radius: 9px;
+
+  background: #fafbfc;
+}
+
+.empty-icon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background: #f3f0ff;
+
+  font-size: 20px;
+}
+
+.commission-empty strong {
+  display: block;
+
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.commission-empty p {
+  margin: 4px 0 0;
+
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+
+
+/* =====================================================
+   PRINT AREA
+===================================================== */
+
+.print-area {
+  display: none;
+}
+
+
+
+/* =====================================================
+   NCM PAPER
+===================================================== */
+
+.ncm-paper {
+  position: relative;
+  width: 100%;
+  min-height: 1000px;
+}
+
+.ncm-background {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  z-index: 0;
+}
+
+.ncm-data {
+  position: relative;
+  z-index: 1;
+
+  padding: 150px 60px 60px;
+}
+
+
+
+/* =====================================================
+   NCM SUPPLIER ROW
+===================================================== */
+
+.supplier-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  gap: 25px;
+
+  margin-bottom: 30px;
+}
+
+.supplier-row > div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.supplier-row label {
+  font-size: 11px;
+  color: #555;
+}
+
+.supplier-row strong {
+  font-size: 14px;
+  color: #222;
+}
+
+
+
+/* =====================================================
+   NCM SECTION
+===================================================== */
+
+.ncm-section {
+  margin-bottom: 28px;
+}
+
+.ncm-section h3 {
+  margin-bottom: 10px;
+
+  font-size: 16px;
+  color: #222;
+}
+
+.ncm-section table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ncm-section th,
+.ncm-section td {
+  padding: 8px;
+
+  border: 1px solid #777;
+
+  text-align: left;
+
+  font-size: 11px;
+}
+
+
+
+/* =====================================================
+   NCM TOTAL
+===================================================== */
+
+.ncm-total {
+  display: flex;
+  justify-content: flex-end;
+
+  gap: 35px;
+
+  margin-top: 25px;
+
+  padding-top: 15px;
+
+  border-top: 1px solid #555;
+}
+
+.ncm-total > div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.ncm-total span {
+  font-size: 11px;
+}
+
+.ncm-total strong {
+  font-size: 14px;
+}
+
+.ncm-total .due strong {
+  color: #c62828;
+}
+
+
+
+/* =====================================================
+   SIGNATURE
+===================================================== */
+
+.signature {
+  margin-top: 55px;
+
+  text-align: right;
+
+  font-size: 12px;
+}
+
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1000px) {
+
+  .statement-page {
+    padding: 25px;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .supplier-info-card {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+
+@media (max-width: 650px) {
+
+  .statement-page {
+    padding: 18px;
+  }
+
+  .statement-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .header-actions {
+    width: 100%;
+  }
+
+  .header-actions button {
+    flex: 1;
+  }
+
+  .transaction {
+    grid-template-columns: 1fr auto;
+  }
+
+  .transaction-info {
+    grid-column: 1 / 2;
+  }
+
+  .transaction-amount,
+  .payment-amount {
+    grid-column: 2;
+    grid-row: 1 / 3;
+  }
+
+  .commission-card {
+    padding: 16px;
+  }
+
+  .commission-table {
+    min-width: 650px;
+  }
+
+}
+
+
+
+/* =====================================================
+   PRINT
+===================================================== */
+
+@media print {
+
+  body * {
+    visibility: hidden;
+  }
+
+  .print-area,
+  .print-area * {
+    visibility: visible;
+  }
+
+  .print-area {
+    display: block;
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+  }
+
+  .statement-page {
+    padding: 0;
+    background: white;
+  }
+
+  .ncm-paper {
+    width: 210mm;
+    min-height: 297mm;
+
+    margin: 0 auto;
+  }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+}

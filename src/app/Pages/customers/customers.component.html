@@ -1,0 +1,273 @@
+<!-- =========================
+     SUPPLIER HOME
+========================= -->
+
+<div class="supplier-page">
+
+  <!-- HEADER -->
+  <div class="page-header">
+
+    <h1>Customer</h1>
+
+    <p>
+      Manage your vegetable Customers
+    </p>
+
+  </div>
+
+
+  <!-- =========================
+       SUPPLIER ACTIONS
+  ========================= -->
+
+  <div class="supplier-actions">
+
+
+    <!-- ADD SUPPLIER -->
+
+    <div
+      class="action-card add-card"
+      (click)="openAddSupplier()">
+
+      <div class="icon-box">
+        <i class="bi bi-person-plus-fill"></i>
+      </div>
+
+      <div class="card-content">
+
+        <h2>
+          Add New Customer
+        </h2>
+
+        <p>
+          Add a new Customers and save their
+          contact details.
+        </p>
+
+      </div>
+
+      <button
+        type="button"
+        class="action-btn">
+
+        Add Customer
+
+        <i class="bi bi-arrow-right"></i>
+
+      </button>
+
+    </div>
+
+
+    <!-- EXISTING SUPPLIER -->
+
+    <div
+      class="action-card view-card"
+      (click)="viewSupplier()">
+
+      <div class="icon-box">
+        <i class="bi bi-people-fill"></i>
+      </div>
+
+      <div class="card-content">
+
+        <h2>
+          Existing Customer
+        </h2>
+
+        <p>
+          Search Customers and view their
+          purchases, payments and dues.
+        </p>
+
+      </div>
+
+      <button
+        type="button"
+        class="action-btn">
+
+        View Customers
+
+        <i class="bi bi-arrow-right"></i>
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- =================================================
+     ADD SUPPLIER MODAL
+================================================= -->
+
+<div
+  class="custom-modal"
+  *ngIf="showAddSupplier"
+  (click)="closeAddSupplier()">
+
+
+  <div
+    class="supplier-modal"
+    (click)="$event.stopPropagation()">
+
+
+    <!-- =========================
+         MODAL HEADER
+    ========================= -->
+
+    <div class="supplier-modal-header">
+
+      <div class="modal-title-area">
+
+        <div class="modal-icon">
+
+          <i class="bi bi-person-plus-fill"></i>
+
+        </div>
+
+        <div>
+
+          <h2>
+            Add New Customer
+          </h2>
+
+          <p>
+            Create a Customer profile
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- CLOSE -->
+
+      <button
+        type="button"
+        class="modal-close"
+        (click)="closeAddSupplier()">
+
+        <i class="bi bi-x-lg"></i>
+
+      </button>
+
+    </div>
+
+
+
+    <!-- =========================
+         MODAL BODY
+    ========================= -->
+
+    <div class="supplier-modal-body">
+
+
+      <!-- SUPPLIER NAME -->
+
+      <div class="input-group">
+
+        <label for="supplierName">
+          Customer Name
+        </label>
+
+        <input
+          id="supplierName"
+          name="supplierName"
+          type="text"
+          class="form-control"
+          placeholder="Enter Customer name"
+          autocomplete="off"
+          [(ngModel)]="customer.name"
+          >
+        
+      </div>
+
+
+
+      <!-- MOBILE NUMBER -->
+
+      <div class="input-group">
+
+        <label for="mobileNumber">
+          Mobile Number
+        </label>
+
+        <input
+          id="mobileNumber"
+          name="mobileNumber"
+          type="tel"
+          class="form-control"
+          placeholder="Enter mobile number"
+          maxlength="10"
+          autocomplete="off"
+          [(ngModel)]="customer.mobileNumber"
+          >
+
+      </div>
+
+
+
+      <!-- ADDRESS -->
+
+      <div class="input-group">
+
+        <label for="address">
+          Address
+        </label>
+
+        <textarea
+          id="address"
+          name="address"
+          class="form-control"
+          rows="3"
+          placeholder="Enter supplier address"
+          [(ngModel)]="customer.address"></textarea>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         MODAL FOOTER
+    ========================= -->
+
+    <div class="supplier-modal-footer">
+
+
+      <!-- CANCEL -->
+
+      <button
+        type="button"
+        class="modal-cancel"
+        (click)="closeAddSupplier()">
+
+        Cancel
+
+      </button>
+
+
+      <!-- SAVE -->
+
+      <button
+        type="button"
+        class="modal-save"
+        (click)="saveSupplier()">
+
+        <i class="bi bi-check-lg"></i>
+
+        Save Customer
+
+      </button>
+
+    </div>
+
+
+  </div>
+
+</div>

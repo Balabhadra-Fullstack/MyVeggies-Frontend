@@ -1,0 +1,73 @@
+<div class="login-page">
+
+  <!-- Background Image -->
+  <div class="background"></div>
+
+  <!-- Dark overlay -->
+  <div class="overlay"></div>
+
+  <!-- Login Card -->
+  <div class="login-card">
+
+    <!-- Logo -->
+ <div class="logo-section">
+  <img src="assets/ncm.logo.png" alt="NCM Logo">
+</div>
+    <h1>Welcome Back!</h1>
+    
+
+    <!-- Email -->
+    <div class="input-group">
+      <label>Email</label>
+
+      <div class="input-box">
+        <i class="bi bi-envelope"></i>
+
+        <input
+          type="email"
+          [(ngModel)]="user.email"
+          placeholder="Enter your email"
+        />
+      </div>
+    </div>
+
+    <!-- Password -->
+    <div class="input-group">
+      <div class="password-label">
+        <label>Password</label>
+      </div>
+
+      <div class="input-box">
+        <i class="bi bi-lock"></i>
+
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          [(ngModel)]="user.password"
+          placeholder="Enter your password"
+        />
+
+        <i
+          class="bi password-eye"
+          [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"
+          (click)="showPassword = !showPassword">
+        </i>
+      </div>
+    </div>
+
+   
+
+    <!-- Login Button -->
+    <button class="login-btn" (click)="login()">
+      <i class="bi bi-box-arrow-in-right"></i>
+      Login
+    </button>
+
+    <!-- Footer -->
+    <div class="footer">
+      © 2026 NCM. All rights reserved.
+      <div class="leaf">❧</div>
+    </div>
+
+  </div>
+
+</div>

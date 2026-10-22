@@ -1,0 +1,883 @@
+<div class="statement-page">
+
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
+
+  <div class="statement-header">
+
+    <div class="header-content">
+      <h2>Supplier Statement</h2>
+
+      <p>
+        View supplier purchase, payment and due details
+      </p>
+    </div>
+
+
+    <div class="header-actions">
+
+      <button
+        class="whatsapp-btn"
+        (click)="openWhatsApp()">
+
+        <span>🟢</span>
+        WhatsApp
+
+      </button>
+
+
+      <button
+        class="print-btn"
+        (click)="printStatement()">
+
+        🖨
+        Print
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =====================================================
+       SUPPLIER INFORMATION
+  ====================================================== -->
+
+  <div
+    class="supplier-info-card"
+    *ngIf="selectedSupplier">
+
+    <div class="supplier-info-item">
+
+      <span class="info-label">
+        Supplier
+      </span>
+
+      <strong>
+        {{ selectedSupplier.name }}
+      </strong>
+
+    </div>
+
+
+    <div class="supplier-info-item">
+
+      <span class="info-label">
+        Mobile
+      </span>
+
+      <strong>
+        {{ selectedSupplier.mobileNumber }}
+      </strong>
+
+    </div>
+
+
+    <div class="supplier-info-item">
+
+      <span class="info-label">
+        Statement Date
+      </span>
+
+      <strong>
+        {{ currentDate | date:'dd MMM yyyy' }}
+      </strong>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =====================================================
+       SUMMARY
+  ====================================================== -->
+
+  <div
+    class="summary-grid"
+    *ngIf="selectedSupplier">
+
+
+    <!-- TOTAL PURCHASE -->
+
+    <div class="summary-card purchase-summary">
+
+      <div class="summary-icon">
+        🛒
+      </div>
+
+      <div class="summary-content">
+
+        <span>
+          Total Purchase
+        </span>
+
+        <strong>
+          ₹{{ selectedSupplier.totalPurchase | number:'1.2-2' }}
+        </strong>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- TOTAL PAID -->
+
+    <div class="summary-card paid-summary">
+
+      <div class="summary-icon">
+        💰
+      </div>
+
+      <div class="summary-content">
+
+        <span>
+          Total Paid
+        </span>
+
+        <strong>
+          ₹{{ selectedSupplier.TotalAmountPaidByme | number:'1.2-2' }}
+        </strong>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- TOTAL DUE -->
+
+    <div class="summary-card due-card">
+
+      <div class="summary-icon">
+        ⚠️
+      </div>
+
+      <div class="summary-content">
+
+        <span>
+          Total Due
+        </span>
+
+        <strong>
+          ₹{{ selectedSupplier.dueAmount | number:'1.2-2' }}
+        </strong>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =====================================================
+       RECENT PURCHASE + PAYMENT
+  ====================================================== -->
+
+  <div
+    class="details-grid"
+    *ngIf="selectedSupplier">
+
+
+    <!-- ===================================================
+         RECENT PURCHASES
+    ==================================================== -->
+
+    <div class="details-card">
+
+      <div class="card-title">
+
+        <div>
+
+          <h3>
+            Recent Purchases
+          </h3>
+
+          <p>
+            Last 3 purchases
+          </p>
+
+        </div>
+
+        <span class="card-icon">
+          🛒
+        </span>
+
+      </div>
+
+
+
+      <!-- EMPTY -->
+
+      <div
+        class="empty-message"
+        *ngIf="purchases.length === 0">
+
+        <span>📦</span>
+
+        <p>
+          No purchase found
+        </p>
+
+      </div>
+
+
+
+      <!-- PURCHASE LIST -->
+
+      <div
+  class="transaction"
+  *ngFor="let purchase of purchases">
+
+  <div class="transaction-date">
+
+    <strong>
+      {{ purchase.entryDate | date:'dd MMM yyyy' }}
+    </strong>
+
+  </div>
+
+
+  <div class="transaction-info">
+
+    <strong>
+      {{ purchase.vehicleNumber }}
+    </strong>
+
+    <span
+      *ngFor="let item of purchase.purchaseItems">
+
+      {{ item.vegetableName }} - {{ item.kg }} kg - {{item.purchasePrice}}
+
+    </span>
+
+  </div>
+
+
+  <div class="transaction-amount">
+
+    ₹{{ purchase.netAmount | number:'1.2-2' }}
+
+  </div>
+
+</div>
+    </div>
+
+
+
+    <!-- ===================================================
+         RECENT PAYMENTS
+    ==================================================== -->
+
+    <div class="details-card">
+
+      <div class="card-title">
+
+        <div>
+
+          <h3>
+            Recent Payments
+          </h3>
+
+          <p>
+            Last 3 payments
+          </p>
+
+        </div>
+
+        <span class="card-icon">
+          💰
+        </span>
+
+      </div>
+
+
+
+      <!-- EMPTY -->
+
+      <div
+        class="empty-message"
+        *ngIf="payments.length === 0">
+
+        <span>💸</span>
+
+        <p>
+          No payment found
+        </p>
+
+      </div>
+
+
+
+      <!-- PAYMENT LIST -->
+
+      <div
+        class="transaction"
+        *ngFor="let payment of payments">
+
+
+        <div class="transaction-date">
+
+          <strong>
+            {{ payment.dateTime| date:'dd MMM yyyy' }}
+          </strong>
+
+          <small>
+            {{ payment.dateTime| date:'hh:mm a' }}
+          </small>
+
+        </div>
+
+
+        <div class="transaction-info">
+
+          <strong>
+            {{ payment.method}}
+          </strong>
+
+          <span>
+            Payment
+          </span>
+
+        </div>
+
+
+        <div class="payment-amount">
+
+          ₹{{ payment.amount | number:'1.2-2' }}
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =====================================================
+       COMMISSION PURCHASE HISTORY
+  ====================================================== -->
+
+  <div
+    class="commission-card"
+    *ngIf="selectedSupplier">
+
+
+    <!-- COMMISSION HEADER -->
+
+    <div class="commission-header">
+
+      <div>
+
+        <h3>
+          Commission Purchase History
+        </h3>
+
+        <p>
+          Commission purchases from this supplier
+        </p>
+
+      </div>
+
+
+      <div class="commission-icon">
+        📋
+      </div>
+
+    </div>
+
+
+
+    <!-- EMPTY COMMISSION -->
+
+    <div
+      class="commission-empty"
+      *ngIf="commissionPurchases.length === 0">
+
+      <div class="empty-icon">
+        📋
+      </div>
+
+      <div>
+
+        <strong>
+          No commission purchase found
+        </strong>
+
+        <p>
+          Commission purchase history will appear here.
+        </p>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- COMMISSION TABLE 
+
+    <div
+      class="commission-table-wrapper"
+      *ngIf="commissionPurchases.length > 0">
+
+      <table class="commission-table">
+
+        <thead>
+
+          <tr>
+
+            <th>
+              Date
+            </th>
+
+            <th>
+              Item
+            </th>
+
+            <th>
+              Quantity
+            </th>
+
+            <th>
+              Rate
+            </th>
+
+            <th>
+              Commission
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          <tr
+            *ngFor="let commission of commissionPurchases">
+
+            <td>
+
+              <strong>
+                {{ commission.date | date:'dd MMM yyyy' }}
+              </strong>
+
+              <small>
+                {{ commission.date | date:'hh:mm a' }}
+              </small>
+
+            </td>
+
+
+            <td>
+
+              <span class="item-name">
+                {{ commission.vegetableName }}
+              </span>
+
+            </td>
+
+
+            <td>
+
+              {{ commission.quantity }}
+              kg
+
+            </td>
+
+
+            <td>
+
+              ₹{{ commission.rate | number:'1.2-2' }}
+
+            </td>
+
+
+            <td>
+
+              <strong class="commission-amount">
+
+                ₹{{ commission.totalCommission | number:'1.2-2' }}
+
+              </strong>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div> -->
+
+
+
+    <!-- COMMISSION TOTAL -->
+
+    <div
+      class="commission-total"
+      *ngIf="commissionPurchases.length > 0">
+
+      <span>
+        Total Commission
+      </span>
+
+     
+
+    </div>
+
+  </div> 
+
+
+
+  <!-- =====================================================
+       PRINT AREA
+  ====================================================== -->
+
+  <div
+    class="print-area"
+    id="supplierStatementPrint"
+    *ngIf="selectedSupplier">
+
+
+    <div class="ncm-paper">
+
+
+      <!-- NCM PAPER BACKGROUND -->
+
+      <img
+        class="ncm-background"
+        src="assets/ncm-paper.png"
+        alt="NCM Summary">
+
+
+      <!-- NCM DATA -->
+
+      <div class="ncm-data">
+
+
+        <!-- SUPPLIER -->
+
+        <div class="supplier-row">
+
+          <div>
+
+            <label>
+              Supplier
+            </label>
+
+            <strong>
+              {{ selectedSupplier.name }}
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Mobile
+            </label>
+
+            <strong>
+              {{ selectedSupplier.mobileNumber }}
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Date
+            </label>
+
+            <strong>
+              {{ currentDate | date:'dd/MM/yyyy' }}
+            </strong>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- PURCHASES -->
+
+        <div class="ncm-section">
+
+          <h3>
+            Recent Purchases
+          </h3>
+
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Date
+                </th>
+
+                <th>
+                  Details
+                </th>
+
+                <th>
+                  Qty
+                </th>
+
+                <th>
+                  Amount
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody>
+
+  <!-- PURCHASE -->
+  <ng-container *ngFor="let purchase of purchases">
+
+    <!-- PURCHASE ITEMS -->
+    <tr *ngFor="let item of purchase.purchaseItems">
+
+      <!-- DATE -->
+      <td>
+        {{ purchase.entryDate | date:'dd/MM/yyyy' }}
+      </td>
+
+      <!-- VEGETABLE -->
+      <td>
+        {{ item.vegetableName }}
+      </td>
+
+      <!-- QUANTITY -->
+      <td>
+        {{ item.kg }} kg
+      </td>
+
+      <!-- ITEM AMOUNT -->
+      <td>
+        ₹{{ item.totalAmount | number:'1.2-2' }}
+      </td>
+
+    </tr>
+
+  </ng-container>
+
+</tbody>
+
+          </table>
+
+        </div>
+
+
+
+        <!-- PAYMENTS -->
+
+        <div class="ncm-section">
+
+          <h3>
+            Recent Payments
+          </h3>
+
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Date
+                </th>
+
+                <th>
+                  Method
+                </th>
+
+                <th>
+                  Amount
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody>
+
+              <tr
+                *ngFor="let payment of payments">
+
+                <td>
+                  {{ payment.dateTime| date:'dd/MM/yyyy' }}
+                </td>
+
+                <td>
+                  {{ payment.method }}
+                </td>
+
+                <td>
+                  ₹{{ payment.amount | number:'1.2-2' }}
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+
+
+        <!-- COMMISSION -->
+
+       <!--<div
+          class="ncm-section"
+          *ngIf="commissionPurchases.length > 0">
+
+          <h3>
+            Commission Purchase History
+          </h3>
+
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Date
+                </th>
+
+                <th>
+                  Item
+                </th>
+
+                <th>
+                  Qty
+                </th>
+
+                <th>
+                  Rate
+                </th>
+
+                <th>
+                  Commission
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody>
+
+              <tr
+                *ngFor="let commission of commissionPurchases">
+
+                <td>
+                  {{ commission.date | date:'dd/MM/yyyy' }}
+                </td>
+
+                <td>
+                  {{ commission.vegetableName }}
+                </td>
+
+                <td>
+                  {{ commission.quantity }} kg
+                </td>
+
+                <td>
+                  ₹{{ commission.rate | number:'1.2-2' }}
+                </td>
+
+                <td>
+                  ₹{{ commission.totalCommission | number:'1.2-2' }}
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>> -->
+
+
+
+        <!-- TOTAL -->
+
+        <div class="ncm-total">
+
+          <div>
+
+            <span>
+              Total Purchase
+            </span>
+
+            <strong>
+              ₹{{ selectedSupplier.netAmount| number:'1.2-2' }}
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <span>
+              Total Paid
+            </span>
+
+            <strong>
+              ₹{{ selectedSupplier.totalPaid | number:'1.2-2' }}
+            </strong>
+
+          </div>
+
+
+          <div class="due">
+
+            <span>
+              Due Amount
+            </span>
+
+            <strong>
+              ₹{{ selectedSupplier.dueAmount | number:'1.2-2' }}
+            </strong>
+
+          </div>
+
+        </div> 
+
+
+
+        <!-- SIGNATURE -->
+
+        <div class="signature">
+          Authorized Signature
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

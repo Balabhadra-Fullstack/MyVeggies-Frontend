@@ -1,0 +1,395 @@
+
+/* ==============================
+   PAYMENT PAGE
+============================== */
+
+.payment-page {
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: #f4f7fb;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+/* ==============================
+   PAYMENT CARD
+============================== */
+
+.payment-card {
+  width: 100%;
+  max-width: 520px;
+  padding: 30px;
+  background: #ffffff;
+  border: 1px solid #e8edf3;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.07);
+  box-sizing: border-box;
+}
+
+/* ==============================
+   HEADER
+============================== */
+
+.payment-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 24px;
+}
+
+.header-icon {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #dcfce7;
+  color: #15803d;
+  border-radius: 12px;
+  font-size: 25px;
+}
+
+.payment-header h2 {
+  margin: 0 0 6px;
+  font-size: 23px;
+  font-weight: 700;
+  color: #172033;
+}
+
+.payment-header p {
+  margin: 0;
+  font-size: 13px;
+  color: #7b8495;
+}
+
+/* ==============================
+   DIVIDER
+============================== */
+
+.form-divider {
+  height: 1px;
+  background: #edf0f4;
+  margin-bottom: 25px;
+}
+
+/* ==============================
+   FORM GROUP
+============================== */
+
+.form-group {
+  position: relative;
+  margin-bottom: 23px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.form-group label i {
+  color: #64748b;
+}
+
+/* ==============================
+   INPUTS AND SELECT
+============================== */
+
+.form-control {
+  width: 100%;
+  height: 46px;
+  padding: 0 13px;
+  border: 1px solid #dce2ea;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #263244;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.form-control::placeholder {
+  color: #a0a8b5;
+}
+
+.form-control:focus {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.10);
+}
+
+select.form-control {
+  cursor: pointer;
+}
+
+/* ==============================
+   CUSTOMER SEARCH
+============================== */
+
+.customer-search {
+  position: relative;
+  width: 100%;
+}
+
+.search-input-wrapper {
+  position: relative;
+}
+
+.search-input {
+  padding-left: 40px;
+  padding-right: 38px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8b95a5;
+  font-size: 15px;
+  z-index: 1;
+}
+
+.clear-search {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  color: #8b95a5;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.clear-search:hover {
+  color: #dc2626;
+}
+
+/* ==============================
+   CUSTOMER DROPDOWN
+============================== */
+
+.customer-dropdown {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  right: 0;
+  max-height: 240px;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid #e0e6ed;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+  z-index: 1050;
+}
+
+.customer-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f2f5;
+  transition: background-color 0.2s ease;
+}
+
+.customer-option:last-child {
+  border-bottom: none;
+}
+
+.customer-option:hover {
+  background: #f0fdf4;
+}
+
+.customer-avatar {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #dcfce7;
+  color: #15803d;
+  font-size: 17px;
+}
+
+.customer-info {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.customer-name {
+  color: #263244;
+  font-size: 14px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.customer-info small {
+  color: #8a94a4;
+  font-size: 12px;
+}
+
+.select-icon {
+  color: #9aa3b2;
+  font-size: 16px;
+}
+
+.customer-option:hover .select-icon {
+  color: #15803d;
+}
+
+/* ==============================
+   NO CUSTOMER FOUND
+============================== */
+
+.no-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 22px 12px;
+  color: #7b8495;
+  font-size: 13px;
+}
+
+.no-result i {
+  font-size: 25px;
+  color: #a0a8b5;
+}
+
+/* ==============================
+   SELECTED CUSTOMER MESSAGE
+============================== */
+
+.field-hint {
+  display: block;
+  margin-top: 8px;
+  color: #15803d;
+  font-size: 12px;
+}
+
+.field-hint i {
+  margin-right: 4px;
+}
+
+/* ==============================
+   PAYMENT AMOUNT
+============================== */
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-prefix {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.prefixed-input {
+  padding-left: 34px;
+}
+
+/* ==============================
+   SAVE PAYMENT BUTTON
+============================== */
+
+.btn-payment {
+  width: 100%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  border: none;
+  border-radius: 9px;
+  background: #16a34a;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease,
+              box-shadow 0.2s ease,
+              transform 0.2s ease;
+}
+
+.btn-payment:hover {
+  background: #15803d;
+  box-shadow: 0 5px 14px rgba(22, 163, 74, 0.20);
+}
+
+.btn-payment:active {
+  transform: scale(0.99);
+}
+
+/* ==============================
+   FOOTER NOTE
+============================== */
+
+.footer-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  margin: 17px 0 0;
+  color: #8b95a5;
+  font-size: 11px;
+  text-align: center;
+}
+
+/* ==============================
+   RESPONSIVE DESIGN
+============================== */
+
+@media (max-width: 576px) {
+
+  .payment-page {
+    padding: 20px 12px;
+  }
+
+  .payment-card {
+    padding: 22px 18px;
+    border-radius: 12px;
+  }
+
+  .payment-header h2 {
+    font-size: 20px;
+  }
+
+  .header-icon {
+    width: 46px;
+    height: 46px;
+    font-size: 22px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+}
+.payment-toast {
+  margin-top: 65px;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.14) !important;
+}

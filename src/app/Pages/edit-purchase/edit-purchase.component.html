@@ -1,0 +1,79 @@
+<div class="purchase-history">
+
+  <div class="page-header">
+    <h2>Purchase History</h2>
+
+    <div class="date-filter">
+      <label for="purchaseDate">Select Date</label>
+
+      <input
+        id="purchaseDate"
+        type="date"
+    
+        (change)="getPurchasesByDate()"
+      />
+    </div>
+  </div>
+
+
+  <!-- Purchases Found -->
+  <div *ngIf="purchases.length > 0" class="purchase-table">
+
+    <table>
+      <thead>
+        <tr>
+          <th>Supplier</th>
+          <th>Items</th>
+          <th>Total Amount</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let purchase of purchases">
+
+          <td>
+            {{ purchase.supplier.name }}
+          </td>
+
+          <td>
+            <span *ngFor="let item of purchase.purchaseItems">
+              {{ item.vegetable.name }}
+              ({{ item.kg }} kg)
+            </span>
+          </td>
+
+          <td>
+            ₹{{ purchase.netAmount }}
+          </td>
+
+          <td>
+            <button
+              type="button"
+              class="edit-btn"
+              (click)="editPurchase(purchase.id)">
+              Edit
+            </button>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+
+  <!-- No Purchases -->
+  <div
+    *ngIf="purchases.length === 0"
+    class="no-purchase">
+
+    <div class="empty-icon">📦</div>
+
+    <h3>No Purchases</h3>
+
+    <p>No purchases found for this date.</p>
+
+  </div>
+
+</div>

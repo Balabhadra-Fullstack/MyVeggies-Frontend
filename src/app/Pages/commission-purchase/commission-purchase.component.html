@@ -1,0 +1,511 @@
+<div class="commission-page">
+
+  <!-- ================= HEADER ================= -->
+
+  <div class="page-header">
+    <div>
+      <h1>Commission Purchase</h1>
+      <p>Record supplier vegetables and settlement details</p>
+    </div>
+  </div>
+
+
+  <!-- ================= BASIC DETAILS ================= -->
+
+  <div class="commission-card">
+
+    <div class="card-title">
+      <div>
+        <h2>Purchase Details</h2>
+        <span>Supplier and commission information</span>
+      </div>
+    </div>
+
+
+    <div class="form-grid">
+
+      <!-- Supplier Search -->
+      <div class="form-group supplier-search">
+
+        <label>Supplier</label>
+
+        <div class="search-box">
+
+          <span class="search-icon">⌕</span>
+
+          <input
+            type="text"
+            placeholder="Search supplier..."
+            [(ngModel)]="supplierSearch"
+            (input)="searchSupplier()"
+            autocomplete="off"
+          >
+
+        </div>
+
+
+        <!-- Supplier Result -->
+
+        <div
+          class="supplier-dropdown"
+          *ngIf="supplierSearch && filteredSuppliers.length">
+
+          <div
+            class="supplier-option"
+            *ngFor="let supplier of filteredSuppliers"
+            (click)="selectSupplier(supplier)">
+
+            <div>
+              <strong>{{ supplier.name }}</strong>
+              <small>{{ supplier.mobileNumber }}</small>
+            </div>
+
+            <span>›</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Truck Number -->
+
+      <div class="form-group">
+
+        <label>Truck Number</label>
+
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter truck number"
+          [(ngModel)]="commissionPurchase.truckNumber"
+        >
+
+      </div>
+
+
+      <!-- Date -->
+
+      <div class="form-group">
+
+        <label>Date & Time</label>
+
+        <input
+          type="datetime-local"
+          class="form-control"
+          [(ngModel)]="commissionPurchase.dateTime"
+        >
+
+      </div>
+
+
+      <!-- Commission -->
+
+      <div class="form-group">
+
+        <label>Commission</label>
+
+        <div class="commission-input">
+
+          <input
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="Enter commission"
+            [(ngModel)]="commissionPurchase.commissionPercent"
+          >
+
+          <span>%</span>
+
+        </div>
+
+        <small class="input-hint">
+          Set commission percentage for this purchase
+        </small>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ================= VEGETABLES ================= -->
+
+  <div class="commission-card">
+
+    <div class="card-title vegetable-title">
+
+      <div>
+        <h2>Vegetables</h2>
+        <span>Add vegetables received from supplier</span>
+      </div>
+
+      <button
+        type="button"
+        class="add-vegetable-btn"
+        (click)="addVegetable()">
+
+        <span>+</span>
+        Add Vegetable
+
+      </button>
+
+    </div>
+
+
+    <!-- Vegetable List -->
+
+    <div class="vegetable-list">
+
+      <div
+        class="vegetable-item"
+        *ngFor="let item of commissionPurchase.items; let i = index">
+
+
+        <!-- Number -->
+
+        <div class="item-number">
+          {{ i + 1 }}
+        </div>
+
+
+        <!-- Vegetable -->
+
+        <div class="form-group">
+
+          <label>Vegetable</label>
+
+          <select
+            class="form-control"
+            [(ngModel)]="item.vegetableId">
+
+            <option [ngValue]="null">
+              Select vegetable
+            </option>
+
+            <option
+              *ngFor="let vegetable of vegetables"
+              [ngValue]="vegetable.id">
+
+              {{ vegetable.name }}
+
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- Quantity -->
+
+        <div class="form-group">
+
+          <label>Quantity</label>
+
+          <div class="input-with-unit">
+
+            <input
+              type="number"
+              min="0"
+              placeholder="0"
+              [(ngModel)]="item.quantity"
+            >
+
+            <span>KG</span>
+
+          </div>
+
+        </div>
+
+
+        <!-- Sale Price -->
+
+        <div class="form-group">
+
+          <label>Sale Price</label>
+
+          <div class="input-with-unit">
+
+            <span class="rupee">₹</span>
+
+            <input
+              type="number"
+              min="0"
+              placeholder="0"
+              [(ngModel)]="item.sellingPrice"
+            >
+
+            <span>/KG</span>
+
+          </div>
+
+        </div>
+
+
+        <!-- Total -->
+
+        <div class="form-group">
+
+          <label>Total Amount</label>
+
+          <div class="total-box">
+
+            ₹
+            {{
+              (item.quantity || 0) *
+              (item.sellingPrice || 0)
+              | number:'1.2-2'
+            }}
+
+          </div>
+
+        </div>
+
+
+        <!-- Remove -->
+
+        <button
+          type="button"
+          class="delete-btn"
+          (click)="removeVegetable(i)"
+          title="Remove">
+
+          ×
+
+        </button>
+
+      </div>
+
+
+      <!-- Empty -->
+
+      <div
+        class="empty-vegetables"
+        *ngIf="commissionPurchase.items.length === 0">
+
+        <div class="empty-icon">🥬</div>
+
+        <strong>No vegetables added</strong>
+
+        <span>Click "Add Vegetable" to add items</span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ================= EXPENSES ================= -->
+
+  <div class="commission-card">
+
+    <div class="card-title">
+
+      <div>
+        <h2>Charges & Expenses</h2>
+        <span>These amounts will be deducted from supplier settlement</span>
+      </div>
+
+    </div>
+
+
+    <div class="expense-grid">
+
+      <!-- Truck -->
+
+      <div class="expense-box">
+
+        <label>🚚 Truck Charge</label>
+
+        <div class="expense-input">
+
+          <span>₹</span>
+
+          <input
+            type="number"
+            min="0"
+            placeholder="0"
+            [(ngModel)]="commissionPurchase.truckCharge"
+          >
+
+        </div>
+
+      </div>
+
+
+      <!-- Labour -->
+
+      <div class="expense-box">
+
+        <label>👷 Labour Charge</label>
+
+        <div class="expense-input">
+
+          <span>₹</span>
+
+          <input
+            type="number"
+            min="0"
+            placeholder="0"
+            [(ngModel)]="commissionPurchase.labourCharge"
+          >
+
+        </div>
+
+      </div>
+
+
+      <!-- Other -->
+
+      <div class="expense-box">
+
+        <label>Other Charge</label>
+
+        <div class="expense-input">
+
+          <span>₹</span>
+
+          <input
+            type="number"
+            min="0"
+            placeholder="0"
+            [(ngModel)]="commissionPurchase.otherCharge"
+          >
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ================= SUMMARY ================= -->
+
+  <div class="summary-wrapper">
+
+    <div class="summary-card">
+
+      <div class="summary-header">
+
+        <div>
+          <h2>Settlement Summary</h2>
+          <span>Supplier final settlement</span>
+        </div>
+
+      </div>
+
+
+      <div class="summary-row">
+
+        <span>Total Sale</span>
+
+        <strong>
+          ₹ {{ getTotalSale() | number:'1.2-2' }}
+        </strong>
+
+      </div>
+
+
+      <div class="summary-row commission-row">
+
+        <span>
+          Commission
+          <small>
+            ({{ commissionPurchase.commissionPercent || 0 }}%)
+          </small>
+        </span>
+
+        <strong>
+          - ₹ {{ getCommissionAmount() | number:'1.2-2' }}
+        </strong>
+
+      </div>
+
+
+      <div class="summary-row">
+
+        <span>Truck Charge</span>
+
+        <strong>
+          - ₹ {{ commissionPurchase.truckCharge || 0 | number:'1.2-2' }}
+        </strong>
+
+      </div>
+
+
+      <div class="summary-row">
+
+        <span>Labour Charge</span>
+
+        <strong>
+          - ₹ {{ commissionPurchase.labourCharge || 0 | number:'1.2-2' }}
+        </strong>
+
+      </div>
+
+
+      <div class="summary-row">
+
+        <span>Other Charge</span>
+
+        <strong>
+          - ₹ {{ commissionPurchase.otherCharge || 0 | number:'1.2-2' }}
+        </strong>
+
+      </div>
+
+
+      <div class="summary-divider"></div>
+
+
+      <div class="payable-row">
+
+        <div>
+          <span>Supplier Payable</span>
+          <small>Final amount to return to supplier</small>
+        </div>
+
+        <strong>
+          ₹ {{ getSupplierPayable() | number:'1.2-2' }}
+        </strong>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ================= ACTION ================= -->
+
+  <div class="bottom-actions">
+
+    <button
+      type="button"
+      class="cancel-btn">
+
+      Cancel
+
+    </button>
+
+    <button
+      type="button"
+      class="save-btn"
+      (click)="saveCommissionPurchase()">
+
+      Save Commission Purchase
+
+    </button>
+
+  </div>
+
+</div>

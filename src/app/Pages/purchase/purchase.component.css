@@ -1,0 +1,145 @@
+.purchase-page {
+  max-width: 1100px;
+}
+
+.header-icon {
+  width: 52px;
+  height: 52px;
+  background: rgba(25, 135, 84, 0.12);
+  color: #198754;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-title {
+  color: #198754;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.item-row {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 10px 12px;
+  transition: all 0.2s ease;
+}
+
+.item-row:hover {
+  border-color: #198754;
+  background: #f1fdf6;
+}
+
+.item-total {
+  font-size: 0.95rem;
+}
+
+.remove-btn {
+  border-radius: 8px;
+}
+
+.add-item-btn {
+  border-style: dashed;
+  border-radius: 8px;
+}
+
+.add-item-btn:hover {
+  background-color: rgba(25, 135, 84, 0.08);
+}
+
+/* Total Box */
+.total-box {
+  background: rgba(25, 135, 84, 0.08);
+  border: 1px solid rgba(25, 135, 84, 0.25);
+  border-radius: 12px;
+  padding: 16px 28px;
+  text-align: right;
+  min-width: 220px;
+}
+
+.total-box span {
+  font-size: 0.85rem;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.save-btn {
+  border-radius: 8px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(25, 135, 84, 0.25);
+  transition: all 0.2s ease;
+}
+
+.save-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(25, 135, 84, 0.35);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #198754;
+  box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.15);
+}
+/* Add this in your existing CSS */
+
+.veg-thumb {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  flex-shrink: 0;
+}
+
+.item-row {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 10px 12px;
+  transition: all 0.2s ease;
+}
+
+.item-row:hover {
+  border-color: #198754;
+  background: #f1fdf6;
+}
+.supplier-search {
+  width: 100%;
+  position: static;
+}
+
+.supplier-dropdown {
+  width: 100%;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-top: 5px;
+
+  /* IMPORTANT */
+  position: static;
+
+  max-height: 220px;
+  overflow-y: auto;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+}
+
+.supplier-option {
+  padding: 12px 15px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  background: white;
+}
+
+.supplier-option:hover {
+  background: #f5f7fa;
+}
+
+.supplier-option:last-child {
+  border-bottom: none;
+}

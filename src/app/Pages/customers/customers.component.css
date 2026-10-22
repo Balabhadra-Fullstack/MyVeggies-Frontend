@@ -1,0 +1,609 @@
+/* =========================
+   SUPPLIER PAGE
+========================= */
+
+.supplier-page {
+  min-height: 100%;
+  padding: 35px 40px;
+  background: #f5f7fa;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.page-header {
+  margin-bottom: 35px;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  color: #102a43;
+}
+
+.page-header p {
+  margin-top: 8px;
+  color: #627d98;
+  font-size: 15px;
+}
+
+
+/* =========================
+   CARDS CONTAINER
+========================= */
+
+.supplier-actions {
+  min-height: calc(100vh - 180px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 35px;
+}
+
+
+/* =========================
+   MAIN CARD
+========================= */
+
+.action-card {
+  width: 380px;
+  min-height: 280px;
+
+  background: white;
+  border-radius: 18px;
+  padding: 32px;
+
+  border: 1px solid #e6e9ed;
+
+  display: flex;
+  flex-direction: column;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.action-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(16, 42, 67, 0.12);
+}
+
+
+/* =========================
+   ICON
+========================= */
+
+.icon-box {
+  width: 58px;
+  height: 58px;
+
+  border-radius: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 25px;
+
+  margin-bottom: 25px;
+}
+
+.add-card {
+  border-left: 4px solid #16a34a;
+}
+
+.add-card .icon-box {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.add-card:hover {
+  border-color: #16a34a;
+}
+
+.add-card:hover .icon-box {
+  background: #16a34a;
+  color: white;
+}
+
+.view-card {
+  border-left: 4px solid #2563eb;
+}
+
+.view-card .icon-box {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.view-card:hover {
+  border-color: #2563eb;
+}
+
+.view-card:hover .icon-box {
+  background: #2563eb;
+  color: white;
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.card-content h2 {
+  margin: 0 0 10px;
+
+  font-size: 21px;
+  font-weight: 650;
+
+  color: #102a43;
+}
+
+.card-content p {
+  margin: 0;
+
+  max-width: 330px;
+
+  line-height: 1.6;
+
+  color: #627d98;
+
+  font-size: 14px;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.action-btn {
+  margin-top: auto;
+
+  width: fit-content;
+
+  padding: 11px 18px;
+
+  border: none;
+  border-radius: 8px;
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.add-card .action-btn {
+  background: #16a34a;
+}
+
+.view-card .action-btn {
+  background: #2563eb;
+}
+
+.action-btn:hover {
+  opacity: 0.9;
+}
+
+
+/* =========================
+   MODAL BACKGROUND
+========================= */
+
+.custom-modal {
+  position: fixed;
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(16, 42, 67, 0.55);
+
+  backdrop-filter: blur(5px);
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.supplier-modal {
+  width: 500px;
+  max-width: calc(100% - 30px);
+
+  background: white;
+
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.25);
+
+  animation: supplierModalOpen 0.25s ease;
+}
+
+
+@keyframes supplierModalOpen {
+
+  from {
+    opacity: 0;
+    transform: translateY(-15px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+}
+
+
+/* =========================
+   MODAL HEADER
+========================= */
+
+.supplier-modal-header {
+
+  padding: 22px 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px solid #edf2f7;
+
+  background: #fbfcfe;
+}
+
+
+.modal-title-area {
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+}
+
+
+.modal-icon {
+
+  width: 46px;
+  height: 46px;
+
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #e8f7ef;
+
+  color: #159957;
+
+  font-size: 20px;
+}
+
+
+.modal-title-area h2 {
+
+  margin: 0;
+
+  color: #102a43;
+
+  font-size: 20px;
+}
+
+
+.modal-title-area p {
+
+  margin: 4px 0 0;
+
+  color: #829ab1;
+
+  font-size: 12px;
+}
+
+
+/* =========================
+   CLOSE BUTTON
+========================= */
+
+.modal-close {
+
+  width: 34px;
+  height: 34px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #edf2f7;
+
+  color: #627d98;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+
+  background: #d9e2ec;
+
+  color: #102a43;
+}
+
+
+/* =========================
+   MODAL BODY
+========================= */
+
+.supplier-modal-body {
+
+  padding: 25px;
+}
+
+
+/* =========================
+   FORM FIELD
+========================= */
+
+/*
+   IMPORTANT:
+   Label upar rahega
+   Input uske neeche rahega
+*/
+
+.input-group {
+
+  display: block;
+
+  width: 100%;
+
+  margin-bottom: 19px;
+}
+
+
+.input-group label {
+
+  display: block;
+
+  width: 100%;
+
+  margin-bottom: 7px;
+
+  color: #243b53;
+
+  font-size: 13px;
+
+  font-weight: 650;
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+.input-group input {
+
+  display: block;
+
+  width: 100%;
+
+  height: 45px;
+
+  box-sizing: border-box;
+
+  padding: 0 13px;
+
+  border: 1px solid #d9e2ec;
+
+  border-radius: 9px;
+
+  outline: none;
+
+  background: white;
+
+  color: #243b53;
+
+  font-size: 14px;
+
+  font-family: inherit;
+
+  transition: 0.2s ease;
+}
+
+
+/* =========================
+   TEXTAREA
+========================= */
+
+.input-group textarea {
+
+  display: block;
+
+  width: 100%;
+
+  min-height: 85px;
+
+  box-sizing: border-box;
+
+  padding: 12px 13px;
+
+  border: 1px solid #d9e2ec;
+
+  border-radius: 9px;
+
+  outline: none;
+
+  background: white;
+
+  color: #243b53;
+
+  font-size: 14px;
+
+  font-family: inherit;
+
+  resize: vertical;
+
+  transition: 0.2s ease;
+}
+
+
+/* =========================
+   PLACEHOLDER
+========================= */
+
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+
+  color: #9fb3c8;
+}
+
+
+/* =========================
+   FOCUS
+========================= */
+
+.input-group input:focus,
+.input-group textarea:focus {
+
+  border-color: #1976b9;
+
+  box-shadow:
+    0 0 0 3px rgba(25, 118, 185, 0.08);
+}
+
+
+/* =========================
+   MODAL FOOTER
+========================= */
+
+.supplier-modal-footer {
+
+  padding: 17px 24px;
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  border-top: 1px solid #edf2f7;
+
+  background: #fbfcfe;
+}
+
+
+/* =========================
+   CANCEL
+========================= */
+
+.modal-cancel {
+
+  padding: 10px 18px;
+
+  border: 1px solid #d9e2ec;
+
+  border-radius: 8px;
+
+  background: white;
+
+  color: #486581;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.modal-cancel:hover {
+
+  background: #f5f7fa;
+}
+
+
+/* =========================
+   SAVE
+========================= */
+
+.modal-save {
+
+  padding: 10px 19px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #4c0861;
+
+  color: white;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  transition: 0.2s;
+}
+
+
+.modal-save:hover {
+
+  background: #117a45;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .supplier-page {
+    padding: 25px 20px;
+  }
+
+  .supplier-actions {
+
+    flex-direction: column;
+
+    min-height: auto;
+  }
+
+  .action-card {
+
+    width: 100%;
+
+    max-width: 380px;
+  }
+
+  .supplier-modal {
+
+    width: 100%;
+  }
+
+}

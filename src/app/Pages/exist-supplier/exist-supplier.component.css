@@ -1,0 +1,623 @@
+/* =========================
+   MAIN PAGE
+========================= */
+
+.existing-supplier-page {
+
+  min-height: 100%;
+
+  padding: 35px 40px;
+
+  background: #f5f7fa;
+
+}
+
+
+/* =========================
+   PAGE HEADER
+========================= */
+
+.page-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 30px;
+
+}
+
+
+.page-header h1 {
+
+  margin: 0;
+
+  font-size: 30px;
+
+  font-weight: 700;
+
+  color: #102a43;
+
+}
+
+
+.page-header p {
+
+  margin: 8px 0 0;
+
+  font-size: 14px;
+
+  color: #627d98;
+
+}
+
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-btn {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 10px 16px;
+
+  border: 1px solid #d9e2ec;
+
+  border-radius: 8px;
+
+  background: white;
+
+  color: #486581;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+
+}
+
+
+.back-btn:hover {
+
+  background: #edf2f7;
+
+  color: #102a43;
+
+}
+
+
+/* =========================
+   SEARCH SECTION
+========================= */
+
+.search-section {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+
+}
+
+
+.search-box {
+
+  width: 500px;
+
+  height: 46px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 0 15px;
+
+  box-sizing: border-box;
+
+  background: white;
+
+  border: 1px solid #d9e2ec;
+
+  border-radius: 9px;
+
+  transition: 0.2s;
+
+}
+
+
+.search-box:focus-within {
+
+  border-color: #1976b9;
+
+  box-shadow:
+    0 0 0 3px rgba(25, 118, 185, 0.08);
+
+}
+
+
+.search-box i {
+
+  color: #829ab1;
+
+  font-size: 16px;
+
+}
+
+
+.search-box input {
+
+  width: 100%;
+
+  height: 100%;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  color: #243b53;
+
+  font-size: 14px;
+
+}
+
+
+.search-box input::placeholder {
+
+  color: #9fb3c8;
+
+}
+
+
+/* =========================
+   SUPPLIER COUNT
+========================= */
+
+.supplier-count {
+
+  color: #627d98;
+
+  font-size: 13px;
+
+}
+
+
+.supplier-count span {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-width: 28px;
+
+  height: 28px;
+
+  margin-right: 6px;
+
+  padding: 0 8px;
+
+  box-sizing: border-box;
+
+  border-radius: 20px;
+
+  background: #e8f0f8;
+
+  color: #1565a8;
+
+  font-weight: 700;
+
+}
+
+
+/* =========================
+   TABLE CONTAINER
+========================= */
+
+.supplier-table-container {
+
+  width: 100%;
+
+  background: white;
+
+  border: 1px solid #e6e9ed;
+
+  border-radius: 14px;
+
+  overflow: hidden;
+
+}
+
+
+/* =========================
+   TABLE HEADER
+========================= */
+
+.supplier-table-header {
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(300px, 2fr)
+    1fr
+    1fr
+    1fr
+    45px;
+
+  align-items: center;
+
+  min-height: 54px;
+
+  padding: 0 20px;
+
+  box-sizing: border-box;
+
+  background: #fbfcfe;
+
+  border-bottom: 1px solid #e6e9ed;
+
+  color: #627d98;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.3px;
+
+}
+
+
+/* =========================
+   SUPPLIER ROW
+========================= */
+
+.supplier-row {
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(300px, 2fr)
+    1fr
+    1fr
+    1fr
+    45px;
+
+  align-items: center;
+
+  min-height: 78px;
+
+  padding: 0 20px;
+
+  box-sizing: border-box;
+
+  border-bottom: 1px solid #edf2f7;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+
+}
+
+
+.supplier-row:last-child {
+
+  border-bottom: none;
+
+}
+
+
+.supplier-row:hover {
+
+  background: #f8fafc;
+
+}
+
+
+/* =========================
+   SUPPLIER DETAILS
+========================= */
+
+.supplier-details {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+}
+
+
+.supplier-avatar {
+
+  width: 44px;
+
+  height: 44px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #e8f5ee;
+
+  color: #16834b;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+}
+
+
+.supplier-details h3 {
+
+  margin: 0 0 5px;
+
+  color: #102a43;
+
+  font-size: 15px;
+
+  font-weight: 650;
+
+}
+
+
+.supplier-details p {
+
+  margin: 0;
+
+  color: #829ab1;
+
+  font-size: 12px;
+
+}
+
+
+.supplier-details p i {
+
+  margin-right: 5px;
+
+}
+
+
+/* =========================
+   AMOUNTS
+========================= */
+
+.amount {
+
+  color: #243b53;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+}
+
+
+.amount.paid {
+
+  color: #16834b;
+
+}
+
+
+.amount.due {
+
+  color: #d64545;
+
+}
+
+
+.amount.clear {
+
+  color: #16834b;
+
+}
+
+
+/* =========================
+   ACTION
+========================= */
+
+.action-column {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+}
+
+
+.action-column i {
+
+  color: #9fb3c8;
+
+  font-size: 17px;
+
+  transition: 0.2s;
+
+}
+
+
+.supplier-row:hover .action-column i {
+
+  color: #1565a8;
+
+  transform: translateX(3px);
+
+}
+
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty-state {
+
+  padding: 70px 20px;
+
+  text-align: center;
+
+}
+
+
+.empty-icon {
+
+  width: 60px;
+
+  height: 60px;
+
+  margin: 0 auto 15px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #edf2f7;
+
+  color: #829ab1;
+
+  font-size: 25px;
+
+}
+
+
+.empty-state h3 {
+
+  margin: 0 0 7px;
+
+  color: #243b53;
+
+  font-size: 17px;
+
+}
+
+
+.empty-state p {
+
+  margin: 0;
+
+  color: #829ab1;
+
+  font-size: 13px;
+
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+  .existing-supplier-page {
+
+    padding: 25px;
+
+  }
+
+  .search-box {
+
+    width: 400px;
+
+  }
+
+  .supplier-table-header,
+  .supplier-row {
+
+    grid-template-columns:
+      minmax(230px, 2fr)
+      1fr
+      1fr
+      1fr
+      35px;
+
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .existing-supplier-page {
+
+    padding: 20px;
+
+  }
+
+  .page-header {
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+  }
+
+  .page-header h1 {
+
+    font-size: 24px;
+
+  }
+
+  .search-section {
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 15px;
+
+  }
+
+  .search-box {
+
+    width: 100%;
+
+  }
+
+  .supplier-table-container {
+
+    overflow-x: auto;
+
+  }
+
+  .supplier-table-header,
+  .supplier-row {
+
+    min-width: 700px;
+
+  }
+
+}

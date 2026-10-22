@@ -1,0 +1,217 @@
+<div class="sidebar" [class.collapsed]="collapsed">
+
+  <!-- =========================
+       TOP
+  ========================== -->
+  <div class="sidebar-top">
+
+    <div class="logo">
+      🌿 <span>NCM</span>
+    </div>
+
+    <button class="menu-btn" (click)="toggleSidebar()">
+      ☰
+    </button>
+
+  </div>
+
+
+  <!-- =========================
+       MENU
+  ========================== -->
+  <div class="menu">
+
+    <!-- Dashboard -->
+    <a
+      routerLink="/dashboard"
+      routerLinkActive="active">
+
+      <span>⌂</span>
+      <span class="menu-text">Dashboard</span>
+
+    </a>
+
+
+    <!-- Supplier -->
+    <a
+      routerLink="/Supplier"
+      routerLinkActive="active">
+
+      <span>🥬</span>
+      <span class="menu-text">Supplier</span>
+
+    </a>
+
+
+    <!-- =========================
+         PURCHASE
+    ========================== -->
+    <div class="nav-item">
+
+      <div class="nav-link">
+
+        <span>🛒</span>
+
+        <span class="menu-text">
+          Purchase
+        </span>
+
+        <span class="arrow">
+
+          <span class="arrow-right">▶</span>
+          <span class="arrow-left">◀</span>
+
+        </span>
+
+      </div>
+
+
+      <!-- Purchase Submenu -->
+      <div class="right-submenu">
+
+        <a
+          routerLink="/Purchase"
+          routerLinkActive="active">
+
+          Add / View
+
+        </a>
+
+
+        <a
+          routerLink="/editPurchase"
+          routerLinkActive="active">
+
+          Edit Purchase
+
+        </a>
+
+
+        <a
+          routerLink="/commission"
+          routerLinkActive="active">
+
+          Commission Purchase
+
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- Customers -->
+    <a
+      routerLink="/Customers"
+      routerLinkActive="active">
+
+      <span>👥</span>
+      <span class="menu-text">Customers</span>
+
+    </a>
+
+
+    <!-- Sale -->
+      <div class="nav-item">
+
+      <div class="nav-link">
+
+        <span>🛒</span>
+
+        <span class="menu-text">
+          Sale
+        </span>
+
+        <span class="arrow">
+
+          <span class="arrow-right">▶</span>
+          <span class="arrow-left">◀</span>
+
+        </span>
+
+      </div>
+
+
+      <!-- Payment Submenu -->
+      <div class="right-submenu">
+
+        <a
+          routerLink="/Sale"
+          routerLinkActive="active">
+
+          Add
+
+        </a>
+
+
+        <a
+          routerLink="/editSale"
+          routerLinkActive="active">
+
+          Edit Sales
+
+        </a>
+
+      </div>
+
+    </div>
+        <!-- =========================
+         PAYMENT
+    ========================== -->
+    <div class="nav-item">
+
+      <div class="nav-link">
+
+        <span>💰</span>
+
+        <span class="menu-text">
+          Payment
+        </span>
+
+        <span class="arrow">
+
+          <span class="arrow-right">▶</span>
+          <span class="arrow-left">◀</span>
+
+        </span>
+
+      </div>
+
+
+      <!-- Payment Submenu -->
+      <div class="right-submenu">
+
+        <a
+          routerLink="/supplier-payment"
+          routerLinkActive="active">
+
+          Supplier Payment
+
+        </a>
+
+
+        <a
+          routerLink="/customer-payment"
+          routerLinkActive="active">
+
+          Customer Payment
+
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- Reports -->
+    <a
+      routerLink="/reports"
+      routerLinkActive="active">
+
+      <span>📊</span>
+      <span class="menu-text">Reports</span>
+
+    </a>
+
+  </div>
+
+</div>

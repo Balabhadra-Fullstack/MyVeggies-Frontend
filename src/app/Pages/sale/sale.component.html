@@ -1,0 +1,369 @@
+<div class="sale-page container-fluid py-4">
+
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold mb-1 text-primary">
+        <i class="bi bi-cart-check me-2"></i>Sale
+      </h2>
+      <p class="text-muted mb-0">
+        Record vegetables sold to customers
+      </p>
+    </div>
+  </div>
+
+
+  <div class="card sale-card shadow-sm border-0 rounded-4">
+
+    <!-- Header -->
+    <div class="card-header bg-white border-0 py-3 px-4 d-flex justify-content-between align-items-center">
+
+      <div>
+        <h5 class="mb-0 fw-semibold">New Sale</h5>
+        <small class="text-muted">Enter sale details</small>
+      </div>
+
+      <div class="header-icon">
+        <i class="bi bi-cart-check fs-4"></i>
+      </div>
+
+    </div>
+
+
+    <div class="card-body p-4">
+
+      <!-- Sale Details -->
+      <h6 class="section-title">
+        <i class="bi bi-person me-2"></i>Sale Details
+      </h6>
+
+
+      <div class="row g-3 mb-4">
+
+        <!-- Customer Live Search -->
+        <div class="col-md-6 col-lg-3">
+
+          <label class="form-label small text-muted">
+            Customer
+          </label>
+
+          <div class="customer-search">
+
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search customer..."
+              [(ngModel)]="customerSearchText"
+              (input)="searchCustomer()"
+              autocomplete="off"
+            >
+
+            <!-- Search Result -->
+            <div
+              class="customer-results"
+              *ngIf="customerSearchText"
+            >
+
+              <div
+                class="customer-result"
+                *ngFor="let customer of customers"
+                (click)="selectCustomer(customer)"
+              >
+
+                <div>
+                  <strong>{{ customer.name }}</strong>
+                  <small
+                    class="d-block text-muted"
+                    *ngIf="customer.mobileNumber"
+                  >
+                    {{ customer.mobileNumber }}
+                  </small>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+       
+
+
+        <!-- Entry Date -->
+        <div class="col-md-6 col-lg-3">
+
+          <label class="form-label small text-muted">
+            Entry Date & Time
+          </label>
+
+          <input
+            type="datetime-local"
+            class="form-control"
+            [(ngModel)]="sale.saleDate"
+          >
+
+        </div>
+
+
+        <!-- Crate -->
+        <div class="col-md-6 col-lg-3">
+
+          <label class="form-label small text-muted">
+            Crate
+          </label>
+
+          <input
+            type="number"
+            class="form-control"
+            [(ngModel)]="sale.crateCount"
+            placeholder="Enter crate quantity"
+            min="0"
+          >
+
+        </div>
+
+      </div>
+
+
+      <!-- Sale Items -->
+      <h6 class="section-title">
+        <i class="bi bi-basket2 me-2"></i>Sale Items
+      </h6>
+
+
+      <!-- Table Header -->
+      <div
+        class="row g-2 d-none d-md-flex text-muted small fw-semibold mb-2 px-1"
+      >
+
+        <div class="col-md-2">
+          Category
+        </div>
+
+        <div class="col-md-3">
+          Vegetable
+        </div>
+
+        <div class="col-md-2">
+          Quantity (KG)
+        </div>
+
+        <div class="col-md-2">
+          Price / KG
+        </div>
+
+        <div class="col-md-2">
+          Total
+        </div>
+
+        <div class="col-md-1 text-end">
+          Action
+        </div>
+
+      </div>
+
+
+      <!-- Item Rows -->
+      <div
+        class="row g-2 align-items-center item-row mb-2"
+        *ngFor="let item of sale.saleItems; let i = index"
+      >
+
+        <!-- Category -->
+        <div class="col-md-2">
+
+          <select
+            class="form-select form-select-sm"
+            [(ngModel)]="selectedCategoryIds[i]"
+            (ngModelChange)="onCategoryChange(i)"
+          >
+
+            <option [ngValue]="null">
+              Select Category
+            </option>
+
+            <option
+              *ngFor="let cat of categories"
+              [ngValue]="cat.id"
+            >
+              {{ cat.name }}
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- Vegetable + Image -->
+        <div class="col-md-3">
+
+          <div class="d-flex align-items-center gap-2">
+
+             
+            <img
+              *ngIf="getVegetable(i, item.vegetableId) as veg"
+              [src]="veg.image"
+              class="veg-thumb"
+              [alt]="veg.name"
+              onerror="this.src='assets/Vegetable/default.png'"
+            > 
+
+
+            <!-- Vegetable Dropdown -->
+            <select
+              class="form-select form-select-sm"
+              [(ngModel)]="item.vegetableId"
+              [disabled]="!selectedCategoryIds[i]"
+              (ngModelChange)="onVegetableChange()"
+            >
+
+              <option [ngValue]="null">
+                Select Vegetable
+              </option>
+
+              <option
+                *ngFor="let vegetable of rowVegetables[i]"
+                [ngValue]="vegetable.id"
+              >
+                {{ vegetable.odianame }}
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+
+        <!-- Quantity -->
+        <div class="col-6 col-md-2">
+
+          <input
+            type="number"
+            class="form-control form-control-sm"
+            [(ngModel)]="item.kg"
+            placeholder="KG"
+            (ngModelChange)="calculateTotal()"
+            min="0"
+          >
+
+        </div>
+
+
+        <!-- Price -->
+        <div class="col-6 col-md-2">
+
+          <input
+            type="number"
+            class="form-control form-control-sm"
+              [(ngModel)]="item.salePrice"
+            placeholder="Price"
+            (ngModelChange)="calculateTotal()"
+            min="0"
+          >
+
+        </div>
+
+
+        <!-- Row Total -->
+        <div class="col-6 col-md-2">
+
+          <div class="fw-semibold text-primary">
+            ₹
+            {{
+              ((item.kg || 0) * (item.salePrice || 0))
+                | number:'1.2-2'
+            }}
+          </div>
+
+        </div>
+
+
+        <!-- Remove -->
+        <div class="col-6 col-md-1 text-end">
+
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-danger remove-btn"
+            (click)="removeItem(i)"
+          >
+
+            <i class="bi bi-trash"></i>
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- Add Vegetable -->
+      <button
+        type="button"
+        class="btn btn-outline-primary btn-sm add-item-btn mt-2"
+        (click)="addItem()"
+      >
+
+        <i class="bi bi-plus-circle me-1"></i>
+        Add Vegetable
+
+      </button>
+
+
+      <!-- Total Amount -->
+      <div class="total-section mt-4">
+
+        <div class="d-flex justify-content-end">
+
+          <div class="total-box">
+
+            <span class="text-muted">
+              Total Amount
+            </span>
+
+            <h4 class="fw-bold text-primary mb-0">
+              ₹ {{ totalAmount | number:'1.2-2' }}
+            </h4>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Footer -->
+    <div
+      class="card-footer bg-white border-0 py-3 px-4 d-flex justify-content-end gap-2"
+    >
+
+      <button
+        type="button"
+        class="btn btn-outline-secondary px-4"
+        (click)="resetForm()"
+      >
+        Cancel
+      </button>
+
+
+      <button
+        type="button"
+        class="btn btn-primary px-4 save-btn"
+        (click)="saveSale()"
+      >
+
+        <i class="bi bi-check-lg me-1"></i>
+        Save Sale
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

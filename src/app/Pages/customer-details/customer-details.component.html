@@ -1,0 +1,1074 @@
+
+<div class="statement-page">
+
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
+
+  <div class="statement-header">
+
+    <div class="header-content">
+
+      <h2>Customer Statement</h2>
+
+      <p>
+        View customer sale, payment, crate and due details
+      </p>
+
+    </div>
+
+
+    <div class="header-actions">
+
+      <button
+        class="whatsapp-btn"
+        type="button"
+        (click)="openWhatsApp()">
+
+        <span>🟢</span>
+        WhatsApp
+
+      </button>
+
+
+      <button
+        class="print-btn"
+        type="button"
+        (click)="printStatement()">
+
+        🖨 Print
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       CUSTOMER INFORMATION
+  ====================================================== -->
+
+  <div
+    class="customer-info-card"
+    *ngIf="selectedCustomer">
+
+    <div class="customer-info-item">
+
+      <span class="info-label">
+        Customer
+      </span>
+
+      <strong>
+        {{ selectedCustomer.name }}
+      </strong>
+
+    </div>
+
+
+    <div class="customer-info-item">
+
+      <span class="info-label">
+        Mobile
+      </span>
+
+      <strong>
+        {{ selectedCustomer.mobileNumber }}
+      </strong>
+
+    </div>
+
+
+    <div class="customer-info-item">
+
+      <span class="info-label">
+        Customer ID
+      </span>
+
+      <strong>
+        {{ selectedCustomer.id }}
+      </strong>
+
+    </div>
+
+
+    <div class="customer-info-item">
+
+      <span class="info-label">
+        Statement Date
+      </span>
+
+      <strong>
+        {{ currentDate | date:'dd MMM yyyy' }}
+      </strong>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       SUMMARY
+  ====================================================== -->
+
+  <div
+    class="summary-grid"
+    *ngIf="selectedCustomer">
+
+
+    <!-- TOTAL SALE -->
+
+    <div class="summary-card sale-summary">
+
+      <div class="summary-icon">
+        🛒
+      </div>
+
+      <div class="summary-content">
+
+        <span>
+          Total Sale
+        </span>
+
+        <strong>
+          ₹{{ selectedCustomer.totalSale | number:'1.2-2' }}
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <!-- TOTAL PAID -->
+
+    <div class="summary-card paid-summary">
+
+      <div class="summary-icon">
+        💰
+      </div>
+
+      <div class="summary-content">
+
+        <span>
+          Total Paid
+        </span>
+
+        <strong>
+          ₹{{ selectedCustomer.totalPaid | number:'1.2-2' }}
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <!-- TOTAL DUE -->
+
+    <div class="summary-card due-card">
+
+      <div class="summary-icon">
+        ⚠️
+      </div>
+
+      <div class="summary-content">
+
+        <span>
+          Total Due
+        </span>
+
+        <strong>
+          ₹{{ selectedCustomer.dueAmount | number:'1.2-2' }}
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <!-- CRATE TAKEN -->
+
+    <div class="summary-card">
+
+      <div class="summary-icon">
+        📦
+      </div>
+
+      <div class="summary-content">
+
+        <span>
+          Crate Taken
+        </span>
+
+        <strong>
+          {{ selectedCustomer.crateTaken }}
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <!-- CRATE RETURNED -->
+
+    <div class="summary-card">
+
+      <div class="summary-icon">
+        🔄
+      </div>
+
+      <div class="summary-content">
+
+        <span>
+          Crate Returned
+        </span>
+
+        <strong>
+          {{ selectedCustomer.crateReturned }}
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <!-- CRATE DUE -->
+
+    <div class="summary-card due-card">
+
+      <div class="summary-icon">
+        📦
+      </div>
+
+      <div class="summary-content">
+
+        <span>
+          Crate Due
+        </span>
+
+        <strong>
+          {{ selectedCustomer.crateDue }}
+        </strong>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       CRATE DETAILS + RETURN BUTTON
+  ====================================================== -->
+
+  <div
+    class="details-card crate-return-card"
+    *ngIf="selectedCustomer">
+
+    <div class="card-title">
+
+      <div>
+
+        <h3>
+          Crate Details
+        </h3>
+
+        <p>
+          Customer crate account
+        </p>
+
+      </div>
+
+      <span class="card-icon">
+        📦
+      </span>
+
+    </div>
+
+
+    <!-- CRATE SUMMARY -->
+
+    <div class="crate-summary">
+
+
+      <!-- TAKEN -->
+
+      <div class="crate-box">
+
+        <span>
+          Crate Taken
+        </span>
+
+        <strong>
+          {{ selectedCustomer.crateTaken }}
+        </strong>
+
+      </div>
+
+
+      <!-- RETURNED -->
+
+      <div class="crate-box returned">
+
+        <span>
+          Crate Returned
+        </span>
+
+        <strong>
+          {{ selectedCustomer.crateReturned }}
+        </strong>
+
+      </div>
+
+
+      <!-- DUE -->
+
+      <div class="crate-box due">
+
+        <span>
+          Crate Due
+        </span>
+
+        <strong>
+          {{ selectedCustomer.crateDue }}
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <!-- RETURN ACTION -->
+
+    <div
+      class="crate-return-action"
+      *ngIf="selectedCustomer.crateDue > 0">
+
+      <div class="crate-due-info">
+
+        <span>
+          Customer has crate pending
+        </span>
+
+        <strong>
+          {{ selectedCustomer.crateDue }} crate(s) due
+        </strong>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="crate-return-btn"
+        (click)="openCrateReturnModal()">
+
+        <i class="bi bi-arrow-return-left"></i>
+
+        Return Crate
+
+      </button>
+
+    </div>
+
+
+    <!-- NO DUE -->
+
+    <div
+      class="crate-clear-message"
+      *ngIf="selectedCustomer.crateDue <= 0">
+
+      <i class="bi bi-check-circle-fill"></i>
+
+      <span>
+        All crates have been returned
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       RECENT SALES + PAYMENTS
+  ====================================================== -->
+
+  <div
+    class="details-grid"
+    *ngIf="selectedCustomer">
+
+
+    <!-- ===================================================
+         RECENT SALES
+    ==================================================== -->
+
+    <div class="details-card">
+
+      <div class="card-title">
+
+        <div>
+
+          <h3>
+            Recent Sales
+          </h3>
+
+          <p>
+            Last 3 sales
+          </p>
+
+        </div>
+
+        <span class="card-icon">
+          🛒
+        </span>
+
+      </div>
+
+
+      <!-- EMPTY -->
+
+      <div
+        class="empty-message"
+        *ngIf="sales.length === 0">
+
+        <span>
+          🛒
+        </span>
+
+        <p>
+          No sale found
+        </p>
+
+      </div>
+
+
+      <!-- SALES -->
+
+      <div
+        class="transaction"
+        *ngFor="let sale of sales">
+
+        <div class="transaction-date">
+
+          <strong>
+            {{ sale.saleDate| date:'dd MMM yyyy' }}
+          </strong>
+
+        </div>
+
+
+        <div class="transaction-info">
+
+          <strong>
+            {{ sale.customername }}
+          </strong>
+
+          <span
+            *ngFor="let item of sale.saleItems">
+
+            {{ item.vegetableName }}
+            -
+            {{ item.kg }} kg
+            -
+            ₹{{ item.salePrice | number:'1.2-2' }}
+
+          </span>
+
+        </div>
+
+
+        <div class="transaction-amount">
+
+          ₹{{ sale.totalsaleAmount| number:'1.2-2' }}
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ===================================================
+         RECENT PAYMENTS
+    ==================================================== -->
+
+    <div class="details-card">
+
+      <div class="card-title">
+
+        <div>
+
+          <h3>
+            Recent Payments
+          </h3>
+
+          <p>
+            Last 3 payments
+          </p>
+
+        </div>
+
+        <span class="card-icon">
+          💰
+        </span>
+
+      </div>
+
+
+      <!-- EMPTY -->
+
+      <div
+        class="empty-message"
+        *ngIf="payments.length === 0">
+
+        <span>
+          💸
+        </span>
+
+        <p>
+          No payment found
+        </p>
+
+      </div>
+
+
+      <!-- PAYMENTS -->
+
+      <div
+        class="transaction"
+        *ngFor="let payment of payments">
+
+        <div class="transaction-date">
+
+          <strong>
+            {{ payment.dateTime }}
+          </strong>
+
+
+        </div>
+
+
+        <div class="transaction-info">
+
+          <strong>
+            {{ payment.method }}
+          </strong>
+
+          <span>
+            Payment
+          </span>
+
+        </div>
+
+
+        <div class="payment-amount">
+
+          ₹{{ payment.amount | number:'1.2-2' }}
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       CRATE RETURN MODAL
+  ====================================================== -->
+
+  <div
+    class="crate-modal-overlay"
+    *ngIf="showCrateReturnModal"
+    (click)="closeCrateReturnModal()">
+
+
+    <div
+      class="crate-modal"
+      (click)="$event.stopPropagation()">
+
+
+      <!-- HEADER -->
+
+      <div class="crate-modal-header">
+
+        <div>
+
+          <h5>
+            Return Crate
+          </h5>
+
+          <p>
+            Enter crate return details
+          </p>
+
+        </div>
+
+
+       <!-- <button
+          type="button"
+          class="modal-close-btn"
+          (click)="closeCrateReturnModal()">
+
+          &times;
+
+        </button> -->
+
+      </div>
+
+
+      <!-- BODY -->
+
+      <div class="crate-modal-body">
+
+
+        <!-- CUSTOMER ID -->
+
+        <div class="form-group">
+
+          <label>
+            Customer ID
+          </label>
+
+          <input
+            type="text"
+            class="form-control"
+            [value]="selectedCustomer?.id"
+            readonly>
+
+        </div>
+
+
+        <!-- CUSTOMER NAME -->
+
+        <div class="form-group">
+
+          <label>
+            Customer Name
+          </label>
+
+          <input
+            type="text"
+            class="form-control"
+            [value]="selectedCustomer?.name"
+            readonly>
+
+        </div>
+
+
+        <!-- CURRENT DUE -->
+
+        <div class="form-group">
+
+          <label>
+            Current Crate Due
+          </label>
+
+          <input
+            type="text"
+            class="form-control"
+            [value]="selectedCustomer?.crateDue"
+            readonly>
+
+        </div>
+
+
+        <!-- RETURN QUANTITY -->
+
+        <div class="form-group">
+
+          <label>
+            Return Crate Quantity
+          </label>
+
+          <input
+            type="number"
+            class="form-control"
+            [(ngModel)]="crateReturnQuantity"
+            min="1"
+            [max]="selectedCustomer?.crateDue"
+            placeholder="Enter crate quantity">
+
+          <small class="input-help">
+            Maximum {{ selectedCustomer?.crateDue }} crate(s) can be returned.
+          </small>
+
+        </div>
+
+
+        <!-- RETURN DATE -->
+
+        <div class="form-group">
+
+          <label>
+            Return Date
+          </label>
+
+          <input
+            type="date"
+            class="form-control"
+            [(ngModel)]="crateReturnDate">
+
+        </div>
+
+      </div>
+
+
+      <!-- FOOTER -->
+
+      <div class="crate-modal-footer">
+
+        <button
+          type="button"
+          class="cancel-btn"
+          (click)="closeCrateReturnModal()">
+
+          Cancel
+
+        </button>
+
+
+        <button
+          type="button"
+          class="create-return-btn"
+          (click)="createCrateReturn()">
+
+          <i class="bi bi-check2-circle"></i>
+
+          Return Crate
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       PRINT AREA
+  ====================================================== -->
+
+  <div
+    class="print-area"
+    id="customerStatementPrint"
+    *ngIf="selectedCustomer">
+
+
+    <div class="ncm-paper">
+
+
+      <!-- BACKGROUND -->
+
+      <img
+        class="ncm-background"
+        src="assets/ncm-paper.png"
+        alt="NCM Summary">
+
+
+      <div class="ncm-data">
+
+
+        <!-- CUSTOMER -->
+
+        <div class="customer-row">
+
+          <div>
+
+            <label>
+              Customer
+            </label>
+
+            <strong>
+              {{ selectedCustomer.name }}
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Mobile
+            </label>
+
+            <strong>
+              {{ selectedCustomer.mobileNumber }}
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Customer ID
+            </label>
+
+            <strong>
+              {{ selectedCustomer.id }}
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Date
+            </label>
+
+            <strong>
+              {{ currentDate | date:'dd/MM/yyyy' }}
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <!-- SALES -->
+
+        <div class="ncm-section">
+
+          <h3>
+            Recent Sales
+          </h3>
+
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Date
+                </th>
+
+                <th>
+                  Details
+                </th>
+
+                <th>
+                  Qty
+                </th>
+
+                <th>
+                  Amount
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody>
+
+              <ng-container
+                *ngFor="let sale of sales">
+
+                <tr
+                  *ngFor="let item of sale.saleItems">
+
+                  <td>
+                    {{ sale.saleDate| date:'dd/MM/yyyy' }}
+                  </td>
+
+                  <td>
+                    {{ item.vegetableName }}
+                  </td>
+
+                  <td>
+                    {{ item.kg }} kg
+                  </td>
+
+                  <td>
+                    ₹{{ item.totalAmount | number:'1.2-2' }}
+                  </td>
+
+                </tr>
+
+              </ng-container>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+
+        <!-- PAYMENTS -->
+
+        <div class="ncm-section">
+
+          <h3>
+            Recent Payments
+          </h3>
+
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Date
+                </th>
+
+                <th>
+                  Method
+                </th>
+
+                <th>
+                  Amount
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody>
+
+              <tr
+                *ngFor="let payment of payments">
+
+                <td>
+                  {{ payment.dateTime  }}
+                </td>
+
+                <td>
+                  {{ payment.method }}
+                </td>
+
+                <td>
+                  ₹{{ payment.amount | number:'1.2-2' }}
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+
+        <!-- CRATE SUMMARY -->
+
+        <div class="ncm-section">
+
+          <h3>
+            Crate Summary
+          </h3>
+
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Crate Taken
+                </th>
+
+                <th>
+                  Crate Returned
+                </th>
+
+                <th>
+                  Crate Due
+                </th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody>
+
+              <tr>
+
+                <td>
+                  {{ selectedCustomer.crateTaken }}
+                </td>
+
+                <td>
+                  {{ selectedCustomer.crateReturned }}
+                </td>
+
+                <td>
+                  {{ selectedCustomer.crateDue }}
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+
+        <!-- TOTAL -->
+
+        <div class="ncm-total">
+
+          <div>
+
+            <span>
+              Total Sale
+            </span>
+
+            <strong>
+              ₹{{ selectedCustomer.totalSale | number:'1.2-2' }}
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <span>
+              Total Paid
+            </span>
+
+            <strong>
+              ₹{{ selectedCustomer.totalPaid | number:'1.2-2' }}
+            </strong>
+
+          </div>
+
+
+          <div class="due">
+
+            <span>
+              Due Amount
+            </span>
+
+            <strong>
+              ₹{{ selectedCustomer.dueAmount | number:'1.2-2' }}
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <!-- SIGNATURE -->
+
+        <div class="signature">
+          Authorized Signature
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+```

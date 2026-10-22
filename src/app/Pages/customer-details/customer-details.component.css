@@ -1,0 +1,802 @@
+
+/* =====================================================
+   CUSTOMER STATEMENT PAGE
+===================================================== */
+
+.statement-page {
+  min-height: 100%;
+  padding: 35px 40px;
+  background: #f5f7fa;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.statement-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.header-content h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.header-content p {
+  margin: 6px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.whatsapp-btn,
+.print-btn {
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.whatsapp-btn {
+  background: #e9f8ef;
+  color: #198754;
+}
+
+.whatsapp-btn:hover {
+  background: #d7f2e1;
+}
+
+.print-btn {
+  background: #e8eefc;
+  color: #3157a4;
+}
+
+.print-btn:hover {
+  background: #dce6fb;
+}
+
+
+/* =====================================================
+   CUSTOMER INFORMATION
+===================================================== */
+
+.customer-info-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.customer-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.info-label {
+  font-size: 12px;
+  color: #8a94a6;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.customer-info-item strong {
+  font-size: 16px;
+  color: #263238;
+}
+
+
+/* =====================================================
+   SUMMARY
+===================================================== */
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 25px;
+}
+
+.summary-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-2px);
+}
+
+.summary-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: #f0f4f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.summary-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.summary-content span {
+  color: #7b8794;
+  font-size: 13px;
+}
+
+.summary-content strong {
+  font-size: 21px;
+  color: #263238;
+}
+
+.due-card {
+  border-left: 4px solid #dc3545;
+}
+
+.due-card .summary-icon {
+  background: #fff0f1;
+}
+
+
+/* =====================================================
+   COMMON DETAILS CARD
+===================================================== */
+
+.details-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 22px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.card-title h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #263238;
+}
+
+.card-title p {
+  margin: 5px 0 0;
+  font-size: 12px;
+  color: #8a94a6;
+}
+
+.card-icon {
+  font-size: 22px;
+}
+
+
+/* =====================================================
+   CRATE DETAILS
+===================================================== */
+
+.crate-return-card {
+  margin-bottom: 25px;
+}
+
+.crate-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.crate-box {
+  padding: 18px;
+  border-radius: 10px;
+  background: #f7f9fb;
+  border: 1px solid #edf0f2;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.crate-box span {
+  font-size: 12px;
+  color: #7b8794;
+}
+
+.crate-box strong {
+  font-size: 26px;
+  color: #263238;
+}
+
+.crate-box.returned {
+  background: #f1fbf5;
+  border-color: #d7f2e1;
+}
+
+.crate-box.returned strong {
+  color: #198754;
+}
+
+.crate-box.due {
+  background: #fff5f5;
+  border-color: #ffd9dc;
+}
+
+.crate-box.due strong {
+  color: #dc3545;
+}
+
+
+/* =====================================================
+   CRATE RETURN ACTION
+===================================================== */
+
+.crate-return-action {
+  margin-top: 18px;
+  padding: 16px;
+  border-radius: 10px;
+  background: #fff8f0;
+  border: 1px solid #ffe4c4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.crate-due-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.crate-due-info span {
+  font-size: 12px;
+  color: #8a94a6;
+}
+
+.crate-due-info strong {
+  font-size: 15px;
+  color: #dc3545;
+}
+
+.crate-return-btn {
+  border: 1px solid #dc3545;
+  background: #ffffff;
+  color: #dc3545;
+  padding: 10px 17px;
+  border-radius: 7px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.crate-return-btn:hover {
+  background: #dc3545;
+  color: #ffffff;
+}
+
+.crate-clear-message {
+  margin-top: 18px;
+  padding: 13px 16px;
+  background: #f1fbf5;
+  border: 1px solid #d7f2e1;
+  border-radius: 8px;
+  color: #198754;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* =====================================================
+   SALES + PAYMENTS
+===================================================== */
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-bottom: 25px;
+}
+
+.transaction {
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  gap: 15px;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #edf0f2;
+}
+
+.transaction:last-child {
+  border-bottom: none;
+}
+
+.transaction-date {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.transaction-date strong {
+  font-size: 13px;
+  color: #374151;
+}
+
+.transaction-date small {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.transaction-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.transaction-info strong {
+  font-size: 14px;
+  color: #263238;
+}
+
+.transaction-info span {
+  font-size: 12px;
+  color: #7b8794;
+}
+
+.transaction-amount,
+.payment-amount {
+  font-weight: 700;
+  color: #198754;
+  white-space: nowrap;
+}
+
+
+/* =====================================================
+   EMPTY MESSAGE
+===================================================== */
+
+.empty-message {
+  text-align: center;
+  padding: 35px 15px;
+  color: #8a94a6;
+}
+
+.empty-message span {
+  font-size: 30px;
+}
+
+.empty-message p {
+  margin: 10px 0 0;
+  font-size: 13px;
+}
+
+
+/* =====================================================
+   CRATE RETURN MODAL
+===================================================== */
+
+.crate-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.48);
+  padding: 20px;
+}
+
+.crate-modal {
+  width: 100%;
+  max-width: 500px;
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.20);
+  animation: crateModalOpen 0.2s ease;
+}
+
+@keyframes crateModalOpen {
+
+  from {
+    opacity: 0;
+    transform: translateY(-15px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+}
+
+
+/* =====================================================
+   MODAL HEADER
+===================================================== */
+
+.crate-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid #edf0f2;
+}
+
+.crate-modal-header h5 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #263238;
+}
+
+.crate-modal-header p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #8a94a6;
+}
+
+.modal-close-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: #f1f3f5;
+  color: #555;
+  font-size: 23px;
+  line-height: 1;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  background: #e2e6ea;
+}
+
+
+/* =====================================================
+   MODAL BODY
+===================================================== */
+
+.crate-modal-body {
+  padding: 22px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 7px;
+}
+
+.form-control {
+  width: 100%;
+  height: 42px;
+  padding: 8px 12px;
+  border: 1px solid #d8dee5;
+  border-radius: 7px;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.15rem rgba(220, 53, 69, 0.12);
+}
+
+.form-control[readonly] {
+  background: #f8f9fa;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+.input-help {
+  display: block;
+  margin-top: 5px;
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+
+/* =====================================================
+   MODAL FOOTER
+===================================================== */
+
+.crate-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 15px 22px;
+  border-top: 1px solid #edf0f2;
+}
+
+.cancel-btn,
+.create-return-btn {
+  padding: 9px 17px;
+  border-radius: 7px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.cancel-btn {
+  border: 1px solid #6c757d;
+  background: #6c757d;
+  color: #ffffff;
+}
+
+.cancel-btn:hover {
+  background: #5c636a;
+}
+
+.create-return-btn {
+  border: 1px solid #dc3545;
+  background: #dc3545;
+  color: #ffffff;
+}
+
+.create-return-btn:hover {
+  background: #bb2d3b;
+}
+
+
+/* =====================================================
+   PRINT AREA
+===================================================== */
+
+.print-area {
+  display: none;
+}
+
+.ncm-paper {
+  position: relative;
+  width: 100%;
+}
+
+.ncm-background {
+  width: 100%;
+  display: block;
+}
+
+.ncm-data {
+  position: absolute;
+  inset: 0;
+  padding: 70px;
+}
+
+.customer-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.customer-row label {
+  display: block;
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.customer-row strong {
+  font-size: 14px;
+}
+
+.ncm-section {
+  margin-top: 25px;
+}
+
+.ncm-section h3 {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.ncm-section table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ncm-section th,
+.ncm-section td {
+  padding: 7px;
+  border: 1px solid #ddd;
+  font-size: 11px;
+  text-align: left;
+}
+
+.ncm-total {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.ncm-total div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ncm-total span {
+  font-size: 11px;
+}
+
+.ncm-total strong {
+  font-size: 14px;
+}
+
+.ncm-total .due strong {
+  color: #dc3545;
+}
+
+.signature {
+  margin-top: 40px;
+  text-align: right;
+  font-size: 12px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1000px) {
+
+  .statement-page {
+    padding: 25px;
+  }
+
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .customer-info-card {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .crate-summary {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .customer-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+@media (max-width: 650px) {
+
+  .statement-page {
+    padding: 18px;
+  }
+
+
+  .statement-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+
+  .header-actions {
+    width: 100%;
+  }
+
+
+  .whatsapp-btn,
+  .print-btn {
+    flex: 1;
+  }
+
+
+  .customer-info-card {
+    grid-template-columns: 1fr;
+  }
+
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .crate-summary {
+    grid-template-columns: 1fr;
+  }
+
+
+  .crate-return-action {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+
+  .crate-return-btn {
+    width: 100%;
+  }
+
+
+  .transaction {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+
+
+  .transaction-amount,
+  .payment-amount {
+    text-align: left;
+  }
+
+
+  .crate-modal {
+    max-width: 100%;
+  }
+
+
+  .crate-modal-footer {
+    flex-direction: column;
+  }
+
+
+  .cancel-btn,
+  .create-return-btn {
+    width: 100%;
+  }
+
+
+  .ncm-data {
+    padding: 25px;
+  }
+
+
+  .customer-row {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
