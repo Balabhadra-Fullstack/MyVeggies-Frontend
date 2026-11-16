@@ -847,15 +847,11 @@
                 </th>
 
                 <th>
-                  Details
+                  Sale Items
                 </th>
 
                 <th>
-                  Qty
-                </th>
-
-                <th>
-                  Amount
+                  Sale Total
                 </th>
 
               </tr>
@@ -865,31 +861,22 @@
 
             <tbody>
 
-              <ng-container
-                *ngFor="let sale of sales">
+              <tr *ngFor="let sale of sales">
+                <td>
+                  {{ sale.saleDate | date:'dd/MM/yyyy' }}
+                </td>
 
-                <tr
-                  *ngFor="let item of sale.saleItems">
+                <td>
+                  <div *ngFor="let item of sale.saleItems">
+                    {{ item.vegetableName }} — {{ item.kg }} kg ×
+                    ₹{{ item.salePrice | number:'1.2-2' }}/kg
+                  </div>
+                </td>
 
-                  <td>
-                    {{ sale.saleDate| date:'dd/MM/yyyy' }}
-                  </td>
-
-                  <td>
-                    {{ item.vegetableName }}
-                  </td>
-
-                  <td>
-                    {{ item.kg }} kg
-                  </td>
-
-                  <td>
-                    ₹{{ item.totalAmount | number:'1.2-2' }}
-                  </td>
-
-                </tr>
-
-              </ng-container>
+                <td>
+                  ₹{{ sale.totalsaleAmount | number:'1.2-2' }}
+                </td>
+              </tr>
 
             </tbody>
 

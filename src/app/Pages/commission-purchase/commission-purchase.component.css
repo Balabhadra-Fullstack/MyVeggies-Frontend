@@ -1,3 +1,4 @@
+
 /* =========================================
    COMMISSION PURCHASE PAGE
 ========================================= */
@@ -9,10 +10,7 @@
   box-sizing: border-box;
 }
 
-
-/* =========================================
-   HEADER
-========================================= */
+/* HEADER */
 
 .page-header {
   margin-bottom: 30px;
@@ -31,40 +29,29 @@
   font-size: 14px;
 }
 
-
-/* =========================================
-   CARD
-========================================= */
+/* CARD */
 
 .commission-card {
-  background: #ffffff;
+  background: #fff;
   border-radius: 12px;
   padding: 25px;
   margin-bottom: 22px;
-
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.06);
-
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   box-sizing: border-box;
 }
 
-
-/* =========================================
-   CARD TITLE
-========================================= */
+/* CARD TITLE */
 
 .card-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   margin-bottom: 24px;
 }
 
 .card-title h2 {
   margin: 0;
   color: #10793e;
-  
   font-size: 18px;
   font-weight: 650;
 }
@@ -72,82 +59,53 @@
 .card-title span {
   display: block;
   margin-top: 5px;
-
   color: #8793a5;
   font-size: 13px;
 }
 
-
-/* =========================================
-   FORM GRID
-========================================= */
+/* FORM GRID */
 
 .form-grid {
   display: grid;
-
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
-
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px 25px;
 }
-
-
-/* =========================================
-   FORM GROUP
-========================================= */
 
 .form-group {
   display: flex;
   flex-direction: column;
-
   min-width: 0;
 }
 
 .form-group label {
   margin-bottom: 8px;
-
   color: #344563;
   font-size: 13px;
   font-weight: 600;
 }
 
-
-/* =========================================
-   FORM CONTROL
-========================================= */
+/* FORM CONTROL */
 
 .form-control {
   width: 100%;
   height: 44px;
-
   padding: 0 12px;
-
   border: 1px solid #d9e2ec;
   border-radius: 7px;
-
-  background: #ffffff;
-
+  background: #fff;
   color: #243b53;
   font-size: 14px;
-
   outline: none;
-
   box-sizing: border-box;
-
-  transition: 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .form-control:focus {
   border-color: #2684ff;
-
-  box-shadow:
-    0 0 0 3px rgba(38, 132, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(38, 132, 255, 0.08);
 }
 
-
-/* =========================================
-   SUPPLIER SEARCH
-========================================= */
+/* SUPPLIER SEARCH */
 
 .supplier-search {
   position: relative;
@@ -160,79 +118,52 @@
 .search-box input {
   width: 100%;
   height: 44px;
-
   padding: 0 12px 0 38px;
-
   border: 1px solid #d9e2ec;
   border-radius: 7px;
-
   outline: none;
-
   font-size: 14px;
-
   box-sizing: border-box;
 }
 
 .search-box input:focus {
   border-color: #2684ff;
-
-  box-shadow:
-    0 0 0 3px rgba(38, 132, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(38, 132, 255, 0.08);
 }
 
 .search-icon {
   position: absolute;
-
   left: 13px;
   top: 50%;
-
   transform: translateY(-50%);
-
   color: #7b8794;
-
   font-size: 20px;
-
   z-index: 1;
 }
 
-
-/* =========================================
-   SUPPLIER DROPDOWN
-========================================= */
+/* SUPPLIER DROPDOWN */
 
 .supplier-dropdown {
   position: absolute;
-
-  top: 73px;
+  top: 48px;
   left: 0;
   right: 0;
-
-  background: white;
-
+  background: #fff;
   border: 1px solid #d9e2ec;
   border-radius: 8px;
-
   overflow: hidden;
-
   z-index: 1000;
-
-  box-shadow:
-    0 8px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .supplier-option {
   display: flex;
-
   justify-content: space-between;
   align-items: center;
-
   padding: 12px 14px;
-
   cursor: pointer;
-
   border-bottom: 1px solid #edf2f7;
-
-  transition: 0.15s;
+  transition: background 0.15s;
 }
 
 .supplier-option:last-child {
@@ -245,16 +176,13 @@
 
 .supplier-option strong {
   display: block;
-
   color: #243b53;
   font-size: 14px;
 }
 
 .supplier-option small {
   display: block;
-
   margin-top: 3px;
-
   color: #8793a5;
   font-size: 12px;
 }
@@ -264,137 +192,96 @@
   font-size: 22px;
 }
 
-
-/* =========================================
-   COMMISSION INPUT
-========================================= */
+/* COMMISSION INPUT */
 
 .commission-input {
   display: flex;
   align-items: center;
-
   height: 44px;
-
   border: 1px solid #d9e2ec;
   border-radius: 7px;
-
   overflow: hidden;
-
-  background: white;
+  background: #fff;
 }
 
 .commission-input:focus-within {
   border-color: #2684ff;
-
-  box-shadow:
-    0 0 0 3px rgba(38, 132, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(38, 132, 255, 0.08);
 }
 
 .commission-input input {
   flex: 1;
-
+  min-width: 0;
   height: 100%;
-
   padding: 0 12px;
-
   border: none;
   outline: none;
-
   font-size: 14px;
 }
 
 .commission-input span {
   padding: 0 14px;
-
   color: #52606d;
-
   font-size: 14px;
   font-weight: 600;
-
   background: #f5f7fa;
-
   height: 100%;
-
   display: flex;
   align-items: center;
 }
 
 .input-hint {
   margin-top: 5px;
-
   color: #9aa5b1;
-
   font-size: 11px;
 }
 
-
-/* =========================================
-   VEGETABLE TITLE
-========================================= */
+/* VEGETABLE TITLE */
 
 .vegetable-title {
   margin-bottom: 20px;
 }
 
-
-/* =========================================
-   ADD VEGETABLE
-========================================= */
+/* ADD VEGETABLE */
 
 .add-vegetable-btn {
   display: flex;
-
   align-items: center;
+  justify-content: center;
   gap: 7px;
-
   padding: 10px 16px;
-
   border: none;
   border-radius: 7px;
-
   background: #2684ff;
-  color: white;
-
+  color: #fff;
   font-size: 13px;
   font-weight: 600;
-
   cursor: pointer;
-
-  transition: 0.2s;
+  transition: background 0.2s, transform 0.2s;
 }
 
 .add-vegetable-btn:hover {
   background: #1769d1;
-
   transform: translateY(-1px);
 }
 
 .add-vegetable-btn span {
   margin: 0;
-
-  color: white;
-
+  color: #fff;
   font-size: 19px;
   line-height: 1;
 }
 
-
-/* =========================================
-   VEGETABLE LIST
-========================================= */
+/* VEGETABLE LIST */
 
 .vegetable-list {
   width: 100%;
 }
 
-
-/* =========================================
-   VEGETABLE ITEM
-========================================= */
+/* VEGETABLE ITEM */
 
 .vegetable-item {
   display: grid;
-
   grid-template-columns:
     32px
     minmax(180px, 2fr)
@@ -402,74 +289,47 @@
     minmax(150px, 1.2fr)
     minmax(150px, 1.2fr)
     38px;
-
   gap: 14px;
-
   align-items: end;
-
   padding: 17px;
-
   margin-bottom: 12px;
-
   border: 1px solid #e5ebf1;
   border-radius: 9px;
-
   background: #fbfcfd;
-
   box-sizing: border-box;
-
-  transition: 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .vegetable-item:hover {
   border-color: #cbd8e5;
-
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-
-/* =========================================
-   ITEM NUMBER
-========================================= */
+/* ITEM NUMBER */
 
 .item-number {
   width: 30px;
   height: 30px;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   margin-bottom: 7px;
-
   border-radius: 50%;
-
   background: #eaf2ff;
   color: #2684ff;
-
   font-size: 12px;
   font-weight: 700;
 }
 
-
-/* =========================================
-   UNIT INPUT
-========================================= */
+/* UNIT INPUT */
 
 .input-with-unit {
   display: flex;
-
   align-items: center;
-
   height: 44px;
-
   border: 1px solid #d9e2ec;
   border-radius: 7px;
-
-  background: white;
-
+  background: #fff;
   overflow: hidden;
 }
 
@@ -479,231 +339,162 @@
 
 .input-with-unit input {
   flex: 1;
-
   min-width: 0;
-
+  width: 100%;
   height: 100%;
-
   padding: 0 10px;
-
   border: none;
-
   outline: none;
-
   font-size: 14px;
 }
 
 .input-with-unit span {
   padding: 0 10px;
-
   color: #7b8794;
-
   font-size: 12px;
   font-weight: 600;
-
   white-space: nowrap;
 }
 
 .input-with-unit .rupee {
   color: #52606d;
-
   padding-right: 0;
 }
 
-
-/* =========================================
-   TOTAL BOX
-========================================= */
+/* TOTAL BOX */
 
 .total-box {
   height: 44px;
-
   display: flex;
-
   align-items: center;
-
   padding: 0 12px;
-
   border: 1px solid #e1e8ed;
   border-radius: 7px;
-
   background: #f5f7fa;
-
   color: #172b4d;
-
   font-size: 14px;
   font-weight: 700;
-
   box-sizing: border-box;
 }
 
-
-/* =========================================
-   DELETE BUTTON
-========================================= */
+/* DELETE BUTTON */
 
 .delete-btn {
   width: 38px;
   height: 38px;
-
   margin-bottom: 3px;
-
   border: none;
   border-radius: 7px;
-
   background: #fff1f0;
   color: #de350b;
-
   font-size: 22px;
-
   cursor: pointer;
-
-  transition: 0.2s;
+  transition: background 0.2s, transform 0.2s;
 }
 
 .delete-btn:hover {
   background: #ffebe6;
-
   transform: scale(1.04);
 }
 
-
-/* =========================================
-   EMPTY
-========================================= */
+/* EMPTY VEGETABLES */
 
 .empty-vegetables {
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
   justify-content: center;
-
   padding: 40px 20px;
-
   border: 1px dashed #cbd5e1;
   border-radius: 9px;
-
   background: #fafbfc;
+  text-align: center;
 }
 
 .empty-icon {
   font-size: 35px;
-
   margin-bottom: 8px;
 }
 
 .empty-vegetables strong {
   color: #52606d;
-
   font-size: 14px;
 }
 
 .empty-vegetables span {
   margin-top: 5px;
-
   color: #9aa5b1;
-
   font-size: 12px;
 }
 
-
-/* =========================================
-   EXPENSE GRID
-========================================= */
+/* EXPENSE GRID */
 
 .expense-grid {
   display: grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
 }
 
 .expense-box {
   padding: 16px;
-
   border: 1px solid #e5ebf1;
   border-radius: 9px;
-
   background: #fbfcfd;
 }
 
 .expense-box label {
   display: block;
-
   margin-bottom: 9px;
-
   color: #344563;
-
   font-size: 13px;
   font-weight: 600;
 }
 
 .expense-input {
   display: flex;
-
   align-items: center;
-
   height: 42px;
-
-  background: white;
-
+  background: #fff;
   border: 1px solid #d9e2ec;
-
   border-radius: 7px;
-
   overflow: hidden;
+}
+
+.expense-input:focus-within {
+  border-color: #2684ff;
 }
 
 .expense-input span {
   padding-left: 12px;
-
   color: #52606d;
-
   font-weight: 600;
 }
 
 .expense-input input {
   width: 100%;
-
+  min-width: 0;
   height: 100%;
-
   padding: 0 10px;
-
   border: none;
   outline: none;
-
   font-size: 14px;
 }
 
-
-/* =========================================
-   SUMMARY
-========================================= */
+/* SUMMARY */
 
 .summary-wrapper {
   display: flex;
-
   justify-content: flex-end;
-
   margin-top: 5px;
 }
 
 .summary-card {
   width: 500px;
-
-  background: white;
-
+  max-width: 100%;
+  background: #fff;
   border-radius: 12px;
-
   padding: 24px;
-
-  box-shadow:
-    0 3px 12px rgba(0, 0, 0, 0.08);
-
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
   box-sizing: border-box;
 }
 
@@ -713,53 +504,41 @@
 
 .summary-header h2 {
   margin: 0;
-
   color: #172b4d;
-
   font-size: 18px;
 }
 
 .summary-header span {
   display: block;
-
   margin-top: 4px;
-
   color: #8793a5;
-
   font-size: 12px;
 }
 
-
-/* =========================================
-   SUMMARY ROW
-========================================= */
+/* SUMMARY ROW */
 
 .summary-row {
   display: flex;
-
   justify-content: space-between;
   align-items: center;
-
+  gap: 12px;
   padding: 11px 0;
-
   border-bottom: 1px solid #edf2f7;
 }
 
 .summary-row span {
   color: #52606d;
-
   font-size: 13px;
 }
 
 .summary-row strong {
   color: #243b53;
-
   font-size: 14px;
+  text-align: right;
 }
 
 .summary-row small {
   color: #9aa5b1;
-
   font-size: 11px;
 }
 
@@ -767,90 +546,69 @@
   color: #de350b;
 }
 
-
-/* =========================================
-   DIVIDER
-========================================= */
+/* SUMMARY DIVIDER */
 
 .summary-divider {
   height: 1px;
-
   margin: 8px 0;
-
   background: #d9e2ec;
 }
 
-
-/* =========================================
-   PAYABLE
-========================================= */
+/* PAYABLE */
 
 .payable-row {
   display: flex;
-
   justify-content: space-between;
   align-items: center;
-
+  gap: 12px;
   padding-top: 10px;
 }
 
 .payable-row span {
   display: block;
-
   color: #172b4d;
-
   font-size: 15px;
   font-weight: 700;
 }
 
 .payable-row small {
   display: block;
-
   margin-top: 4px;
-
   color: #8793a5;
-
   font-size: 11px;
 }
 
 .payable-row strong {
   color: #159447;
-
   font-size: 22px;
+  text-align: right;
 }
 
-
-/* =========================================
-   BOTTOM ACTIONS
-========================================= */
+/* BOTTOM ACTIONS */
 
 .bottom-actions {
   display: flex;
-
   justify-content: flex-end;
   align-items: center;
-
   gap: 12px;
-
   margin-top: 25px;
 }
 
-.cancel-btn {
-  height: 44px;
-
+.cancel-btn,
+.save-btn {
+  min-height: 44px;
   padding: 0 20px;
-
-  border: 1px solid #d9e2ec;
   border-radius: 7px;
-
-  background: white;
-
-  color: #52606d;
-
   font-size: 14px;
   font-weight: 600;
-
   cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.cancel-btn {
+  border: 1px solid #d9e2ec;
+  background: #fff;
+  color: #52606d;
 }
 
 .cancel-btn:hover {
@@ -858,95 +616,84 @@
 }
 
 .save-btn {
-  height: 44px;
-
-  padding: 0 22px;
-
   border: none;
-  border-radius: 7px;
-
   background: #159447;
-  color: white;
-
-  font-size: 14px;
-  font-weight: 600;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 3px 8px rgba(21, 148, 71, 0.18);
-
-  transition: 0.2s;
+  color: #fff;
+  box-shadow: 0 3px 8px rgba(21, 148, 71, 0.18);
 }
 
-.save-btn:hover {
+.save-btn:hover:not(:disabled) {
   background: #12813d;
-
   transform: translateY(-1px);
 }
 
+.save-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
 
-/* =========================================
-   TABLET
-========================================= */
+/* TABLET */
 
 @media (max-width: 1100px) {
+  .commission-page {
+    padding: 25px;
+  }
 
   .vegetable-item {
-    grid-template-columns:
-      30px
-      1fr
-      1fr;
+    grid-template-columns: 30px repeat(2, minmax(0, 1fr));
+    align-items: end;
   }
 
   .delete-btn {
-    width: 100%;
+    width: 38px;
   }
 
   .expense-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
 }
 
-
-/* =========================================
-   MOBILE
-========================================= */
+/* MOBILE */
 
 @media (max-width: 700px) {
-
   .commission-page {
     padding: 20px 15px 35px;
   }
 
-  .form-grid {
-    grid-template-columns: 1fr;
+  .commission-card {
+    padding: 18px;
   }
 
+  .page-header h1 {
+    font-size: 24px;
+  }
+
+  .form-grid,
   .expense-grid {
     grid-template-columns: 1fr;
   }
 
   .card-title {
     align-items: flex-start;
-
     flex-direction: column;
-
     gap: 15px;
   }
 
   .add-vegetable-btn {
     width: 100%;
-
-    justify-content: center;
   }
 
   .vegetable-item {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
   }
 
   .item-number {
+    margin-bottom: 0;
+  }
+
+  .delete-btn {
+    width: 100%;
     margin-bottom: 0;
   }
 
@@ -956,6 +703,7 @@
 
   .summary-card {
     width: 100%;
+    padding: 18px;
   }
 
   .bottom-actions {
@@ -967,4 +715,7 @@
     width: 100%;
   }
 
+  .payable-row strong {
+    font-size: 19px;
+  }
 }

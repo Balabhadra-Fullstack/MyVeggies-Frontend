@@ -1,0 +1,276 @@
+
+<div class="payment-page">
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div>
+      <h2>Payment Details</h2>
+      <p>View customer and supplier payment history</p>
+    </div>
+  </div>
+
+  <!-- SEARCH CARD -->
+  <div class="search-card">
+
+    <h5>Select Payment Type</h5>
+
+    <div class="payment-type">
+
+      <label class="type-option"
+             [class.active]="paymentType === 'customer'">
+
+        <input type="radio"
+               name="paymentType"
+               value="customer"
+               [(ngModel)]="paymentType"
+               (change)="changePartyType()">
+
+        <span>👤 Customer</span>
+
+      </label>
+
+      <label class="type-option"
+             [class.active]="paymentType === 'supplier'">
+
+        <input type="radio"
+               name="paymentType"
+               value="supplier"
+               [(ngModel)]="paymentType"
+               (change)="changePartyType()">
+
+        <span>🚚 Supplier</span>
+
+      </label>
+
+    </div>
+
+    <!-- LIVE SEARCH -->
+    <div class="form-group search-group">
+
+      <label>
+        Search {{ paymentType === 'customer' ? 'Customer' : 'Supplier' }}
+      </label>
+
+      <div class="search-input">
+
+        <input
+          type="text"
+          [(ngModel)]="searchText"
+          (input)="searchParty()"
+          placeholder="Type name to search..."
+          autocomplete="off">
+
+        <button type="button"
+                *ngIf="searchText"
+                (click)="clearSearch()">
+          ✕
+        </button>
+
+      </div>
+
+      <!-- LIVE SEARCH DROPDOWN -->
+      <div class="search-results"
+           *ngIf="searchText.trim().length >= 2 && !selectedParty">
+
+        <div *ngIf="searchLoading" class="search-message">
+          Searching...
+        </div>
+
+        <div *ngIf="!searchLoading && filteredParties.length === 0"
+             class="search-message">
+          No matching records found
+        </div>
+
+        <div class="search-item"
+             *ngFor="let party of filteredParties"
+             (click)="selectParty(party)">
+
+          <strong>{{ party.name }}</strong>
+
+          <small>{{ party.mobileNumber || '' }}</small>
+
+        </div>
+
+      </div>
+
+      <!-- SELECTED PARTY -->
+      <div class="selected-party" *ngIf="selectedParty">
+
+        <span>
+          <span class="selected-icon">✓</span>
+          {{ selectedParty.name }}
+        </span>
+
+        <button type="button" (click)="clearSearch()">
+          Change
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- DATE FILTER -->
+    <div class="date-row">
+
+      <div class="form-group">
+        <label>Start Date</label>
+
+        <input type="date"
+               [(ngModel)]="fromDate">
+      </div>
+
+      <div class="form-group">
+        <label>End Date</label>
+
+        <input type="date"
+               [(ngModel)]="toDate">
+      </div>
+
+    </div>
+
+    <!-- SUBMIT -->
+    <button class="submit-btn"
+            type="button"
+            (click)="submitSearch()"
+            [disabled]="loading">
+
+      <span *ngIf="!loading">Search Payments</span>
+      <span *ngIf="loading">Loading...</span>
+
+    </button>
+
+  </div>
+
+
+  <!-- PAYMENT HISTORY -->
+  <div class="history-card" *ngIf="searched">
+
+    <!-- HISTORY HEADER -->
+    <div class="history-header">
+
+      <div>
+        <h4>Payment History</h4>
+
+        <p>
+          {{ selectedParty ? selectedParty.name : '' }}
+        </p>
+      </div>
+
+      <span class="record-count">
+        {{ totalElements }} Records
+      </span>
+
+    </div>
+
+
+    <!-- LOADING -->
+    <div class="message" *ngIf="loading">
+      Loading payment details...
+    </div>
+
+
+    <!-- EMPTY -->
+    <div class="message"
+         *ngIf="!loading && payments.length === 0">
+
+      <div class="empty-icon">📋</div>
+
+      <h5>No Payment Records</h5>
+
+      <p>No payments found for the selected date range.</p>
+
+    </div>
+
+
+    <!-- PAYMENT LIST -->
+    <div class="payment-list"
+         *ngIf="!loading && payments.length > 0">
+
+      <div class="payment-item"
+           *ngFor="let payment of payments">
+
+        <div class="payment-info">
+
+          <div class="payment-date">
+            {{ payment.dateTime.toString() | date:'dd MMM yyyy' }}
+          </div>
+
+          <div>
+            <span class="method-badge"
+                  [ngClass]="payment.method.toLowerCase()">
+
+              {{ payment.method }}
+
+            </span>
+          </div>
+
+        </div>
+
+
+        <div class="payment-right">
+
+          <strong class="payment-amount">
+
+            {{ payment.amount | currency:'INR':'symbol':'1.2-2' }}
+
+          </strong>
+
+          <!-- EDIT ONLY FIRST PAGE -->
+          <button type="button"
+                  class="edit-btn"
+                  *ngIf="currentPage === 0"
+                  (click)="editPayment(payment.paymentId)">
+
+            ✏️ Edit
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- CURRENT PAGE TOTAL -->
+    <div class="total-section"
+         *ngIf="!loading && payments.length > 0">
+
+      <span>Current Page Total</span>
+
+      <strong>
+        {{ pageTotal | currency:'INR':'symbol':'1.2-2' }}
+      </strong>
+
+    </div>
+
+
+    <!-- PAGINATION -->
+    <div class="pagination"
+         *ngIf="!loading && totalPages > 0">
+
+      <button type="button"
+              (click)="previousPage()"
+              [disabled]="currentPage === 0">
+
+        ← Previous
+
+      </button>
+
+      <span>
+        Page {{ currentPage + 1 }} of {{ totalPages }}
+      </span>
+
+      <button type="button"
+              (click)="nextPage()"
+              [disabled]="currentPage >= totalPages - 1">
+
+        Next →
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

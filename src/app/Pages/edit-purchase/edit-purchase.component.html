@@ -1,79 +1,277 @@
-<div class="purchase-history">
 
+<div class="edit-purchase-page">
+
+  <!-- Page Header -->
   <div class="page-header">
-    <h2>Purchase History</h2>
+    <div>
+      <h2>Edit Purchase</h2>
+      <p>Find a supplier, review purchase history, and edit an entry.</p>
+    </div>
 
-    <div class="date-filter">
-      <label for="purchaseDate">Select Date</label>
+    <div class="header-icon">✏️</div>
+  </div>
+
+  <!-- Search and Purchase Type -->
+  <div class="search-card">
+
+    <div class="form-group">
+      <label for="purchaseType">Purchase Type</label>
+
+      <select
+        id="purchaseType"
+        [(ngModel)]="purchaseType"
+        (change)="onPurchaseTypeChange()">
+        <option value="NORMAL">Normal Purchase</option>
+        <option value="COMMISSION">Commission Purchase</option>
+      </select>
+    </div>
+
+    <div class="form-group supplier-search">
+      <label for="supplierSearch">Search Supplier</label>
 
       <input
-        id="purchaseDate"
-        type="date"
-    
-        (change)="getPurchasesByDate()"
-      />
+        id="supplierSearch"
+        type="text"
+        [(ngModel)]="supplierSearch"
+        (input)="searchSupplier()"
+        placeholder="Enter supplier name..."
+        autocomplete="off" />
+
+      <!-- Supplier Suggestions -->
+      <div class="supplier-results" *ngIf="filteredSuppliers.length > 0">
+        <button
+          type="button"
+          class="supplier-option"
+          *ngFor="let supplier of filteredSuppliers"
+          (click)="selectSupplier(supplier)">
+
+          <span class="supplier-avatar">
+            {{ supplier.name.charAt(0).toUpperCase()}}
+          </span>
+
+          <span>{{ supplier.name }}</span>
+          <span class="select-arrow">›</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Selected Supplier -->
+  <div class="selected-supplier" *ngIf="selectedSupplier">
+    <div class="supplier-avatar large">
+      {{ selectedSupplier.name.charAt(0).toUpperCase() }}
+    </div>
+
+    <div class="supplier-info">
+      <span class="section-label">SELECTED SUPPLIER</span>
+      <h3>{{ selectedSupplier.name }}</h3>
+      <p>
+        {{ purchaseType === 'NORMAL'
+          ? 'Normal purchase history'
+          : 'Commission purchase history' }}
+      </p>
+    </div>
+
+    <div class="purchase-count">
+      <strong>{{ purchases.length }}</strong>
+      <span>Purchases loaded</span>
     </div>
   </div>
 
-
-  <!-- Purchases Found -->
-  <div *ngIf="purchases.length > 0" class="purchase-table">
-
-    <table>
-      <thead>
-        <tr>
-          <th>Supplier</th>
-          <th>Items</th>
-          <th>Total Amount</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr *ngFor="let purchase of purchases">
-
-          <td>
-            {{ purchase.supplier.name }}
-          </td>
-
-          <td>
-            <span *ngFor="let item of purchase.purchaseItems">
-              {{ item.vegetable.name }}
-              ({{ item.kg }} kg)
-            </span>
-          </td>
-
-          <td>
-            ₹{{ purchase.netAmount }}
-          </td>
-
-          <td>
-            <button
-              type="button"
-              class="edit-btn"
-              (click)="editPurchase(purchase.id)">
-              Edit
-            </button>
-          </td>
-
-        </tr>
-      </tbody>
-    </table>
-
+  <!-- Error -->
+  <div class="alert error-alert" *ngIf="errorMessage">
+    <span>⚠️</span>
+    {{ errorMessage }}
   </div>
 
+  <!-- Loading -->
+  <div class="loading-card" *ngIf="isLoading">
+    <div class="spinner"></div>
+    <p>Loading purchase history...</p>
+  </div>
 
-  <!-- No Purchases -->
+  <!-- No Supplier -->
   <div
-    *ngIf="purchases.length === 0"
-    class="no-purchase">
+    class="empty-state"
+    *ngIf="!selectedSupplier && !isLoading && !errorMessage">
 
-    <div class="empty-icon">📦</div>
+    <div class="empty-icon">🔎</div>
+    <h3>Search for a supplier</h3>
+    <p>Select a supplier to view their latest 30 purchases.</p>
+  </div>
 
-    <h3>No Purchases</h3>
+  <!-- Purchase History -->
+  <div
+    class="history-section"
+    *ngIf="selectedSupplier && !isLoading">
 
-    <p>No purchases found for this date.</p>
+    <div class="section-heading">
+      <div>
+        <h3>Purchase History</h3>
+        <p>Most recent purchases appear first.</p>
+      </div>
+      <span class="count-badge">{{ purchases.length }} records</span>
+    </div>
 
+    <!-- No Purchases -->
+    <div class="empty-state compact"
+      *ngIf="purchases.length === 0 && !errorMessage">
+
+      <div class="empty-icon">📋</div>
+      <h3>No purchases found</h3>
+      <p>No records were found for this supplier and purchase type.</p>
+    </div>
+
+    <!-- Purchase Cards -->
+    <div class="purchase-list" *ngIf="purchases.length > 0">
+
+      <div class="purchase-card" *ngFor="let purchase of purchases">
+
+        <!-- Purchase Card Header -->
+        <div class="purchase-card-header">
+          <div>
+            <h4>
+              {{ purchase.vehicleNumber || purchase.trucknumber || 'Vehicle not specified' }}
+            </h4>
+          </div>
+
+          <span
+            class="type-badge"
+            [class.commission-badge]="purchaseType === 'COMMISSION'">
+
+            {{ purchaseType === 'NORMAL' ? 'Normal' : 'Commission' }}
+          </span>
+        </div>
+
+        <!-- Common Details -->
+        <div class="purchase-meta">
+          <div>
+            <span class="meta-label">Date</span>
+            <strong>
+              {{ purchase.entryDate || purchase.date || '—' }}
+            </strong>
+          </div>
+
+          <div *ngIf="purchaseType === 'NORMAL'">
+            <span class="meta-label">Truck Weight</span>
+            <strong>{{ purchase.truckWeight ??  '—'  }}</strong>
+          </div>
+
+          <div *ngIf="purchaseType === 'COMMISSION'">
+            <span class="meta-label">Commission</span>
+            <strong>{{ purchase.commission ?? '—' }}%</strong>
+          </div>
+        </div>
+
+        <!-- Normal Purchase Items -->
+        <div class="table-wrapper" *ngIf="purchaseType === 'NORMAL'">
+          <table>
+            <thead>
+              <tr>
+                <th>Vegetable</th>
+                <th>Quantity (kg)</th>
+                <th>Rate</th>
+                <th class="amount-column">Amount</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let item of purchase.purchaseItems">
+                <td>{{ item.vegetableName }}</td>
+                <td>{{ item.kg }}</td>
+                <td>{{ item.purchasePrice | number:'1.2-2' }}</td>
+                <td class="amount-column">
+                  {{ item.totalAmount | number:'1.2-2' }}
+                </td>
+              </tr>
+
+              <tr *ngIf="!purchase.purchaseItems?.length">
+                <td colspan="4" class="no-items">No item details available.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Commission Purchase Items -->
+        <div class="table-wrapper" *ngIf="purchaseType === 'COMMISSION'">
+          <table>
+            <thead>
+              <tr>
+                <th>Vegetable</th>
+                <th>Quantity</th>
+                <th>Rate</th>
+                <th class="amount-column">Amount</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr *ngFor="let item of purchase.items">
+                <td>{{ item.vegetablename }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.rate | number:'1.2-2' }}</td>
+                <td class="amount-column">
+                  {{ item.amount | number:'1.2-2' }}
+                </td>
+              </tr>
+
+              <tr *ngIf="!purchase.items?.length">
+                <td colspan="4" class="no-items">No item details available.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Normal Purchase Total -->
+        <div class="purchase-footer" *ngIf="purchaseType === 'NORMAL'">
+          <div class="total-label">Net Amount</div>
+          <div class="total-value">
+            ₹{{ purchase.netAmount | number:'1.2-2' }}
+          </div>
+        </div>
+
+        <!-- Commission Purchase Charges -->
+        <div class="commission-details" *ngIf="purchaseType === 'COMMISSION'">
+          <div class="charge-row">
+            <span>Truck Charges</span>
+            <strong>₹{{ purchase.truckcharges | number:'1.2-2' }}</strong>
+          </div>
+
+          <div class="charge-row">
+            <span>Labour Charges</span>
+            <strong>₹{{ purchase.labourcharges | number:'1.2-2' }}</strong>
+          </div>
+
+          <div class="charge-row">
+            <span>Other Charges</span>
+            <strong>₹{{ purchase.othercharges | number:'1.2-2' }}</strong>
+          </div>
+
+          <div class="commission-total">
+            <span>Supplier Payable</span>
+            <strong>₹{{ purchase.supplierpayable | number:'1.2-2' }}</strong>
+          </div>
+        </div>
+
+        <!-- Edit Action -->
+        <div class="purchase-actions">
+          <button
+            type="button"
+            class="edit-button"
+            (click)="editPurchase(purchase)"
+            [disabled]="!getPurchaseId(purchase)">
+
+            ✏️ Edit Purchase
+          </button>
+
+          <span class="missing-id" *ngIf="!getPurchaseId(purchase)">
+            Edit unavailable: purchase ID is missing from the response.
+          </span>
+        </div>
+
+      </div>
+    </div>
   </div>
 
 </div>
+```

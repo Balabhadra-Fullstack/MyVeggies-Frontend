@@ -28,4 +28,7 @@ export class SupplierServiceService {
    public search(data:String):Observable<SupplierResponse[]>{
     return this.http.get<SupplierResponse[]>(this.baseurl+'api/suppliers/searchSupplier?name='+data);
    }
+   public getAllSuppliers():Observable<Supplier[]>{
+    return this.http.get<Supplier[]>(this.baseurl+'api/suppliers/getall');
+   }
 }

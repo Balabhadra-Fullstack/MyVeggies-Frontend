@@ -1,114 +1,144 @@
-<div class="sale-history">
-
+<div class="edit-sale-page">
   <div class="page-header">
+    <div>
+      <h2>Edit Sale</h2>
+      <p>Find a customer, review recent sales, and choose an entry to edit.</p>
+    </div>
+    <div class="header-icon" aria-hidden="true">✏️</div>
+  </div>
 
-    <h2>Sale History</h2>
-
-    <div class="date-filter">
-
-      <label for="saleDate">
-        Select Date
-      </label>
-
+  <section class="search-card" aria-label="Search customers">
+    <div class="form-group customer-search">
+      <label for="customerSearch">Search Customer</label>
       <input
-        id="saleDate"
-        type="date"
-        (change)="getSalesByDate()"
-      />
+        id="customerSearch"
+        name="customerSearch"
+        type="text"
+        [(ngModel)]="customerSearch"
+        (input)="searchCustomer()"
+        placeholder="Enter customer name..."
+        autocomplete="off" />
 
+      <div class="customer-results" *ngIf="filteredCustomers.length > 0">
+        <button
+          type="button"
+          class="customer-option"
+          *ngFor="let customer of filteredCustomers"
+          (click)="selectCustomer(customer)">
+          <span class="customer-avatar">
+            {{ customer.name.charAt(0).toUpperCase() }}
+          </span>
+          <span class="customer-option-details">
+            <strong>{{ customer.name }}</strong>
+            <small>{{ customer.mobileNumber }}</small>
+          </span>
+          <span class="select-arrow" aria-hidden="true">›</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="selected-customer" *ngIf="selectedCustomer">
+    <div class="customer-avatar large">
+      {{ selectedCustomer.name.charAt(0).toUpperCase() }}
+    </div>
+    <div class="customer-info">
+      <span class="section-label">SELECTED CUSTOMER</span>
+      <h3>{{ selectedCustomer.name }}</h3>
+      <p>{{ selectedCustomer.mobileNumber }}</p>
+    </div>
+    <div class="sale-count">
+      <strong>{{ sales.length }}</strong>
+      <span>Recent sales</span>
+    </div>
+  </section>
+
+  <div class="alert error-alert" *ngIf="errorMessage">
+    <span aria-hidden="true">⚠️</span>
+    {{ errorMessage }}
+  </div>
+
+  <div class="loading-card" *ngIf="isLoading">
+    <div class="spinner"></div>
+    <p>Loading sales history...</p>
+  </div>
+
+  <div
+    class="empty-state"
+    *ngIf="!selectedCustomer && !isLoading && !errorMessage">
+    <div class="empty-icon" aria-hidden="true">🔎</div>
+    <h3>Search for a customer</h3>
+    <p>Select a customer to view their recent sales.</p>
+  </div>
+
+  <section
+    class="history-section"
+    *ngIf="selectedCustomer && !isLoading"
+    aria-labelledby="history-heading">
+    <div class="section-heading">
+      <div>
+        <h3 id="history-heading">Sale History</h3>
+        <p>Recent sales for {{ selectedCustomer.name }}.</p>
+      </div>
+      <span class="count-badge">{{ sales.length }} records</span>
     </div>
 
-  </div>
-
-
-  <!-- Sales Found -->
-  <div
-    *ngIf="sales.length > 0"
-    class="sale-table"
-  >
-
-    <table>
-
-      <thead>
-
-        <tr>
-          <th>Customer</th>
-          <th>Items</th>
-          <th>Total Amount</th>
-          <th>Action</th>
-        </tr>
-
-      </thead>
-
-
-      <tbody>
-
-        <tr *ngFor="let sale of sales">
-
-          <!-- Customer -->
-          <td>
-            {{ sale.customer.name }}
-          </td>
-
-
-          <!-- Items -->
-          <td>
-
-            <span
-              *ngFor="let item of sale.saleItems"
-              class="item-text"
-            >
-              {{ item.vegetable.name }}
-              ({{ item.kg }} kg)
-            </span>
-
-          </td>
-
-
-          <!-- Total -->
-          <td>
-            ₹{{ sale.netAmount }}
-          </td>
-
-
-          <!-- Action -->
-          <td>
-
-            <button
-              type="button"
-              class="edit-btn"
-              (click)="editSale(sale.id)"
-            >
-              Edit
-            </button>
-
-          </td>
-
-        </tr>
-
-      </tbody>
-
-    </table>
-
-  </div>
-
-
-  <!-- No Sales -->
-  <div
-    *ngIf="sales.length === 0"
-    class="no-sale"
-  >
-
-    <div class="empty-icon">
-      📦
+    <div class="empty-state compact" *ngIf="sales.length === 0 && !errorMessage">
+      <div class="empty-icon" aria-hidden="true">📋</div>
+      <h3>No sales found</h3>
+      <p>No recent sales were found for this customer.</p>
     </div>
 
-    <h3>No Sales</h3>
+    <div class="sale-list" *ngIf="sales.length > 0">
+      <article class="sale-card" *ngFor="let sale of sales">
+        <div class="sale-card-header">
+          <div>
+            <span class="sale-number">Sale #{{ sale.saleId }}</span>
+            <h4>{{ selectedCustomer.name }}</h4>
+          </div>
+          <span class="date-badge">{{ sale.saleDate| date:'mediumDate' }}</span>
+        </div>
 
-    <p>
-      No sales found for this date.
-    </p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Vegetable</th>
+                <th>Quantity (kg)</th>
+                <th>Rate</th>
+                <th class="amount-column">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of sale.saleItems">
+                <td>{{ item.vegetableName }}</td>
+                <td>{{ item.kg }}</td>
+                <td>₹{{ item.salePrice | number:'1.2-2' }}</td>
+                <td class="amount-column">
+                  ₹{{ item.totalAmount | number:'1.2-2' }}
+                </td>
+              </tr>
+              <tr *ngIf="!sale.saleItems.length">
+                <td colspan="4" class="no-items">No item details available.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
-  </div>
+        <div class="sale-footer">
+          <span class="total-label">Total Amount</span>
+          <strong>₹{{ sale.totalsaleAmount | number:'1.2-2' }}</strong>
+           <span class="total-label">Crate Count</span>
+          <strong>{{ sale.crateCount }}</strong>
+        </div>
 
+        <div class="sale-actions">
+          <button type="button" class="edit-button" (click)="edit(sale.saleId)">
+            ✏️ Edit Sale
+          </button>
+          
+        </div>
+      </article>
+    </div>
+  </section>
 </div>

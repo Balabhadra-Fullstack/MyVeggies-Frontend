@@ -24,6 +24,8 @@ import { EditSaleComponent } from './Pages/edit-sale/edit-sale.component';
 import { ExistCustomerComponent } from './Pages/exist-customer/exist-customer.component';
 import { CustomerDetailsComponent } from './Pages/customer-details/customer-details.component';
 import { SaleComponent } from './Pages/sale/sale.component';
+import { ViewPageComponent } from './Pages/view-page/view-page.component';
+import { ViewPaymentHistoryComponent } from './Pages/view-payment-history/view-payment-history.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { SaleComponent } from './Pages/sale/sale.component';
      CommissionPurchaseComponent,
      EditSaleComponent,
      ExistCustomerComponent,
-     CustomerDetailsComponent
+     CustomerDetailsComponent,
+     ViewPageComponent,
+     ViewPaymentHistoryComponent
   ],
   imports: [
     BrowserModule,

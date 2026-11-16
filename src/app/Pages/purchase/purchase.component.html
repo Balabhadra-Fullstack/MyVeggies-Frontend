@@ -196,7 +196,7 @@
         Cancel
       </button>
       <button type="button" class="btn btn-success px-4 save-btn" (click)="savePurchase()">
-        <i class="bi bi-check-lg me-1"></i> Save Purchase
+        <i class="bi bi-check-lg me-1"></i> {{isEditMode ? 'UpdatePurchase' : 'SavePurchase'}}
       </button>
     </div>
 

@@ -1,0 +1,87 @@
+
+<div class="dashboard-container">
+
+  <!-- Vegetable Rain Background -->
+  <div class="vegetable-rain" aria-hidden="true">
+    <span>🥕</span>
+    <span>🍅</span>
+    <span>🥦</span>
+    <span>🌽</span>
+    <span>🥬</span>
+    <span>🥒</span>
+    <span>🧅</span>
+    <span>🍆</span>
+    <span>🫑</span>
+    <span>🥕</span>
+    <span>🍅</span>
+    <span>🥦</span>
+    <span>🥔</span>
+    <span>🌶️</span>
+    <span>🥬</span>
+  </div>
+
+  <div class="dashboard-content">
+
+    <!-- Welcome Section -->
+    <div class="dashboard-heading">
+      <div>
+        <h2>Welcome to NCM 🌿</h2>
+        <p>Your Fresh Vegetable Business Dashboard</p>
+      </div>
+
+      <div class="welcome-badge">
+        <span>🌱</span> Fresh & Healthy Business
+      </div>
+    </div>
+
+    <!-- Dashboard Cards -->
+    <div class="row g-4 mt-3">
+
+      <!-- Supplier Card -->
+      <div class="col-md-6">
+        <div class="dashboard-card supplier-card">
+
+          <div class="card-icon">
+            <i class="bi bi-truck"></i>
+          </div>
+
+          <div class="card-content">
+            <h6>Total Suppliers</h6>
+            <h1>{{ supplierCount }}</h1>
+            <p>Registered Suppliers</p>
+          </div>
+
+          <div class="card-decoration">🥕</div>
+
+        </div>
+      </div>
+
+      <!-- Customer Card -->
+      <div class="col-md-6">
+        <div class="dashboard-card customer-card">
+
+          <div class="card-icon">
+            <i class="bi bi-people"></i>
+          </div>
+
+          <div class="card-content">
+            <h6>Total Customers</h6>
+            <h1>{{ customerCount }}</h1>
+            <p>Registered Customers</p>
+          </div>
+
+          <div class="card-decoration">🥦</div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="dashboard-footer">
+      <span>🌿</span>
+      Growing Together, Fresh Every Day!
+      <span>🌿</span>
+    </div>
+
+  </div>
+</div>

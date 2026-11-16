@@ -2,7 +2,7 @@ import { PurchaseItemRes } from "./PurchaseItemRes";
 
 export interface PurchaseResponse{
       purchaseId: number;
-  supplierName: string;
+  suppliername: string;
   vehicleNumber: string;
   entryDate: string;
   truckWeight: number;

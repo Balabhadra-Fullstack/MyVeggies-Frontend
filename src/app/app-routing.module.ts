@@ -17,6 +17,8 @@ import { CommissionPurchaseComponent } from './Pages/commission-purchase/commiss
 import { EditSaleComponent } from './Pages/edit-sale/edit-sale.component';
 import { CustomerDetailsComponent } from './Pages/customer-details/customer-details.component';
 import { ExistCustomerComponent } from './Pages/exist-customer/exist-customer.component';
+import { ViewPageComponent } from './Pages/view-page/view-page.component';
+import { ViewPaymentHistoryComponent } from './Pages/view-payment-history/view-payment-history.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -37,7 +39,14 @@ const routes: Routes = [
       {path:'commission',component:CommissionPurchaseComponent},
       {path:'editSale',component:EditSaleComponent},
       {path:'customer-details/:id',component:CustomerDetailsComponent},
-      {path:'exist-customer',component:ExistCustomerComponent}
+      {path:'exist-customer',component:ExistCustomerComponent},
+      {path:'editPP',component:PurchaseComponent},
+      {path:'editCP',component:CommissionPurchaseComponent},
+      {path:'view',component:ViewPageComponent},
+      {path:'editsale/:id',component:SaleComponent},
+      {path:'paymentview',component:ViewPaymentHistoryComponent},
+      {path:'editcustomerpayment/:id',component:CustomerPaymentComponent},
+      {path:'editsupplierpayment/:id',component:SupplierPaymentComponent}
     ]
   }
 ];

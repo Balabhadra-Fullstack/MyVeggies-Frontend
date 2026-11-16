@@ -1,8 +1,8 @@
 export interface CustomerPaymentResponse{
     paymentId:number;
     customerId:number;
-    customername:String;
+    customerName:string;
     amount:number;
-    method:String;
-    dateTime:String;
+    method:string;
+    dateTime:string;
 }

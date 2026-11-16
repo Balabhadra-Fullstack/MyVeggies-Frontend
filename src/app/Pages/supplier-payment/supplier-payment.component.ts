@@ -88,6 +88,7 @@ export class SupplierPaymentComponent implements OnInit {
         paymenttime: ''
       };
 
+
       this.supplierSearch = '';
       this.filteredSuppliers = [];
       this.showSupplierDropdown = false;
@@ -111,4 +112,5 @@ export class SupplierPaymentComponent implements OnInit {
     }
   });
 }
+
 }

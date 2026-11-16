@@ -42,7 +42,7 @@
             type="button"
             class="clear-search"
             *ngIf="customerSearch"
-            (click)="customerSearch = ''; payment.id= null; filteredCustomers = []; showCustomerDropdown = false"
+            (click)="clearCustomerSearch()"
             aria-label="Clear customer search">
 
             <i class="bi bi-x-circle"></i>
@@ -86,7 +86,7 @@
 
       </div>
 
-      <small class="field-hint" *ngIf="payment.id">
+      <small class="field-hint" *ngIf="customerId !== null">
         <i class="bi bi-check-circle-fill"></i>
         Customer selected successfully
       </small>
@@ -154,7 +154,7 @@
       (click)="savePayment()">
 
       <i class="bi bi-check-circle me-2"></i>
-      Save Payment
+      {{ isEdited ? 'Update Payment' : 'Save Payment' }}
 
     </button>
 

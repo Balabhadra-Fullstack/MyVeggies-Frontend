@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { commissionResponse } from 'src/app/Model/commissionResponse';
 import { PurchaseResponse } from 'src/app/Model/PurchaseResponse';
 import { SupplierPaymentResponseDTO } from 'src/app/Model/SupplierPaymentResponseDTO';
+import { CommissionpurchaseService } from 'src/app/Service/commissionpurchase.service';
 import { PurchaseServicService } from 'src/app/Service/Supplier_Purchase_Services/purchase-service.service';
 import { SupplierServiceService } from 'src/app/Service/Supplier_Purchase_Services/supplier-service.service';
 
@@ -27,19 +29,19 @@ export class SupplierDetailsComponent implements OnInit {
 
 
   // Commission purchase history
-  commissionPurchases: any[] = [];
-
-
+  commissionPurchases: commissionResponse[]= [];
+ 
   constructor(
     private router: Router,
     private purchaseServ: PurchaseServicService,
     private rout: ActivatedRoute,
-    private supplierServ: SupplierServiceService
+    private supplierServ: SupplierServiceService,
+    private commission: CommissionpurchaseService
   ) {}
-
-
+ 
+totalcharges:number=0;
   ngOnInit(): void {
-
+ 
     const id = this.rout.snapshot.paramMap.get('id');
 
     console.log('ID FROM URL:', id);
@@ -109,7 +111,6 @@ export class SupplierDetailsComponent implements OnInit {
   }
 
 
-
   // =====================================================
   // PAYMENT HISTORY
   // =====================================================
@@ -126,25 +127,18 @@ export class SupplierDetailsComponent implements OnInit {
   // COMMISSION PURCHASE HISTORY
   // =====================================================
 
-  getCommissionPurchases(supplierId: number): void {
-
-    /*
-      Yahan baad mein API call:
-
-      this.supplierService
-        .getCommissionPurchases(supplierId)
-        .subscribe(response => {
-
-          this.commissionPurchases = response;
-
-        });
-    */
-
-
-    // Abhi testing ke liye
-    this.commissionPurchases = [];
-
-  }
+ getCommissionPurchases(supplierId: number): void {
+  this.commission.getRecent3CommissionPurchaseBySupplier(supplierId).subscribe({
+    next: (data: commissionResponse[]) => {
+      console.log('Commission purchases:', data);
+      this.commissionPurchases = data;
+    
+    },
+    error: error => {
+      console.log('Commission error:', error);
+    }
+  });
+}
 
 
 
@@ -198,7 +192,7 @@ Total Purchase: ₹${this.selectedSupplier.TotalAmountPurchaesd}
 Total Paid: ₹${this.selectedSupplier.TotalAmountPaidByme}
 
 
-Thank you.`;
+Thank you For Visiting.`;
 
 
     const whatsappUrl =

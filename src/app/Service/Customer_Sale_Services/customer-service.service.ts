@@ -17,7 +17,7 @@ export class CustomerServiceService {
     return this.http.post<Customer[]>(this.baseurl+'api/customers/add',data);
   }
   public getByid(id:number):Observable<CustomerResponse[]>{
-    return this.http.get<CustomerResponse[]>(this.baseurl+'api/customers/'+id);
+    return this.http.get<CustomerResponse[]>(this.baseurl+'api/customers/get/'+id);
   }
 
   public searchCustomer(name: string): Observable<SearchCustomer[]> {
@@ -25,5 +25,8 @@ export class CustomerServiceService {
   }
   public search(name:string):Observable<CustomerResponse[]>{
     return this.http.get<CustomerResponse[]>(this.baseurl + 'api/customers/searchCustomer?name=' +name);
+  }
+  public getAllcustomers():Observable<Customer[]>{
+    return this.http.get<Customer[]>(this.baseurl+'api/customers/getall');
   }
 }

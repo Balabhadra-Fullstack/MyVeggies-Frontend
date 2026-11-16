@@ -252,7 +252,7 @@
     <span
       *ngFor="let item of purchase.purchaseItems">
 
-      {{ item.vegetableName }} - {{ item.kg }} kg - {{item.purchasePrice}}
+      {{ item.vegetableName }} - {{ item.kg }} kg - ₹{{item.purchasePrice}}
 
     </span>
 
@@ -260,9 +260,9 @@
 
 
   <div class="transaction-amount">
-
+       <div class="payment-amount">
     ₹{{ purchase.netAmount | number:'1.2-2' }}
-
+       </div>
   </div>
 
 </div>
@@ -326,10 +326,6 @@
           <strong>
             {{ payment.dateTime| date:'dd MMM yyyy' }}
           </strong>
-
-          <small>
-            {{ payment.dateTime| date:'hh:mm a' }}
-          </small>
 
         </div>
 
@@ -411,128 +407,45 @@
           No commission purchase found
         </strong>
 
-        <p>
-          Commission purchase history will appear here.
-        </p>
-
       </div>
 
     </div>
 
 
+<div class="transaction" *ngFor="let purchase of commissionPurchases">
 
-    <!-- COMMISSION TABLE 
+  <div class="transaction-date">
+    <strong>{{ purchase.date | date:'dd MMM yyyy' }}</strong>
+  </div>
 
-    <div
-      class="commission-table-wrapper"
-      *ngIf="commissionPurchases.length > 0">
-
-      <table class="commission-table">
-
-        <thead>
-
-          <tr>
-
-            <th>
-              Date
-            </th>
-
-            <th>
-              Item
-            </th>
-
-            <th>
-              Quantity
-            </th>
-
-            <th>
-              Rate
-            </th>
-
-            <th>
-              Commission
-            </th>
-
-          </tr>
-
-        </thead>
-
-
-        <tbody>
-
-          <tr
-            *ngFor="let commission of commissionPurchases">
-
-            <td>
-
-              <strong>
-                {{ commission.date | date:'dd MMM yyyy' }}
-              </strong>
-
-              <small>
-                {{ commission.date | date:'hh:mm a' }}
-              </small>
-
-            </td>
-
-
-            <td>
-
-              <span class="item-name">
-                {{ commission.vegetableName }}
-              </span>
-
-            </td>
-
-
-            <td>
-
-              {{ commission.quantity }}
-              kg
-
-            </td>
-
-
-            <td>
-
-              ₹{{ commission.rate | number:'1.2-2' }}
-
-            </td>
-
-
-            <td>
-
-              <strong class="commission-amount">
-
-                ₹{{ commission.totalCommission | number:'1.2-2' }}
-
-              </strong>
-
-            </td>
-
-          </tr>
-
-        </tbody>
-
-      </table>
-
-    </div> -->
-
-
-
-    <!-- COMMISSION TOTAL -->
-
-    <div
-      class="commission-total"
-      *ngIf="commissionPurchases.length > 0">
-
+  <div class="transaction-info">
+ <strong>{{purchase.trucknumber}}</strong>
+    <div *ngFor="let item of purchase.items">
       <span>
-        Total Commission
-      </span>
-
-     
-
+      {{ item.vegetablename }} -
+      {{ item.quantity }} kg × ₹{{ item.rate | number:'1.2-2' }}</span>
     </div>
+
+   
+<small>My Commmission:{{purchase.commission}}% </small>
+    <small>
+      Charges(Include All): ₹{{ (purchase.truckcharges + purchase.labourcharges + purchase.othercharges) | number:'1.2-2' }}
+    </small>
+  </div>
+  <div class="transaction-amount">
+    <small>Supplier Payable :</small>
+    <div class="payment-amount">
+
+          ₹{{ purchase.supplierpayable| number:'1.2-2' }}
+
+        </div>
+  </div>
+
+</div>
+
+
+
+
 
   </div> 
 
@@ -630,15 +543,11 @@
                 </th>
 
                 <th>
-                  Details
+                  Purchase Items
                 </th>
 
                 <th>
-                  Qty
-                </th>
-
-                <th>
-                  Amount
+                  Purchase Total
                 </th>
 
               </tr>
@@ -648,35 +557,22 @@
 
             <tbody>
 
-  <!-- PURCHASE -->
-  <ng-container *ngFor="let purchase of purchases">
-
-    <!-- PURCHASE ITEMS -->
-    <tr *ngFor="let item of purchase.purchaseItems">
-
-      <!-- DATE -->
+  <tr *ngFor="let purchase of purchases">
       <td>
         {{ purchase.entryDate | date:'dd/MM/yyyy' }}
       </td>
 
-      <!-- VEGETABLE -->
       <td>
-        {{ item.vegetableName }}
+        <div *ngFor="let item of purchase.purchaseItems">
+          {{ item.vegetableName }} — {{ item.kg }} kg ×
+          ₹{{ item.purchasePrice | number:'1.2-2' }}/kg
+        </div>
       </td>
 
-      <!-- QUANTITY -->
       <td>
-        {{ item.kg }} kg
+        ₹{{ purchase.netAmount | number:'1.2-2' }}
       </td>
-
-      <!-- ITEM AMOUNT -->
-      <td>
-        ₹{{ item.totalAmount | number:'1.2-2' }}
-      </td>
-
-    </tr>
-
-  </ng-container>
+  </tr>
 
 </tbody>
 
@@ -747,7 +643,7 @@
 
         <!-- COMMISSION -->
 
-       <!--<div
+       <div
           class="ncm-section"
           *ngIf="commissionPurchases.length > 0">
 
@@ -767,19 +663,15 @@
                 </th>
 
                 <th>
-                  Item
-                </th>
-
-                <th>
-                  Qty
-                </th>
-
-                <th>
-                  Rate
+                  Commission Items
                 </th>
 
                 <th>
                   Commission
+                </th>
+
+                <th>
+                  Total Charges
                 </th>
 
               </tr>
@@ -788,37 +680,33 @@
 
 
             <tbody>
+              <ng-container *ngFor="let commission of commissionPurchases">
+                <tr>
+                  <td>
+                    {{ commission.date | date:'dd/MM/yyyy' }}
+                  </td>
 
-              <tr
-                *ngFor="let commission of commissionPurchases">
+                  <td>
+                    <div *ngFor="let item of commission.items">
+                      {{ item.vegetablename }} — {{ item.quantity }} kg ×
+                      ₹{{ item.rate | number:'1.2-2' }}
+                    </div>
+                  </td>
 
-                <td>
-                  {{ commission.date | date:'dd/MM/yyyy' }}
-                </td>
+                  <td>
+                    ₹{{ commission.commission | number:'1.2-2' }}
+                  </td>
 
-                <td>
-                  {{ commission.vegetableName }}
-                </td>
-
-                <td>
-                  {{ commission.quantity }} kg
-                </td>
-
-                <td>
-                  ₹{{ commission.rate | number:'1.2-2' }}
-                </td>
-
-                <td>
-                  ₹{{ commission.totalCommission | number:'1.2-2' }}
-                </td>
-
-              </tr>
-
+                  <td>
+                    ₹{{ (commission.truckcharges + commission.labourcharges + commission.othercharges) | number:'1.2-2' }}
+                  </td>
+                </tr>
+              </ng-container>
             </tbody>
 
           </table>
 
-        </div>> -->
+        </div>
 
 
 
@@ -833,7 +721,7 @@
             </span>
 
             <strong>
-              ₹{{ selectedSupplier.netAmount| number:'1.2-2' }}
+              ₹{{ selectedSupplier.TotalAmountPurchaesd| number:'1.2-2' }}
             </strong>
 
           </div>
@@ -842,11 +730,11 @@
           <div>
 
             <span>
-              Total Paid
+              Total Paid By Me
             </span>
 
             <strong>
-              ₹{{ selectedSupplier.totalPaid | number:'1.2-2' }}
+              ₹{{ selectedSupplier.TotalAmountPaidByme| number:'1.2-2' }}
             </strong>
 
           </div>

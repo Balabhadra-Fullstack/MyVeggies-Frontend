@@ -1,0 +1,310 @@
+<div class="report-container">
+
+  <!-- Header -->
+  <div class="report-header no-print">
+    <div>
+      <h2><i class="bi bi-file-earmark-bar-graph"></i> NCM Reports</h2>
+    </div>
+
+    <button class="btn btn-dark" (click)="printReport()">
+      <i class="bi bi-printer"></i> Print Report
+    </button>
+  </div>
+
+  <!-- Report Information -->
+  <div class="report-info">
+    <div>
+      <span>From Date</span>
+      <strong>{{ fromDate | date:'dd MMM yyyy' }}</strong>
+    </div>
+
+    <div>
+      <span>To Date</span>
+      <strong>{{ toDate | date:'dd MMM yyyy' }}</strong>
+    </div>
+
+  </div>
+
+  
+  <!-- Loading -->
+  <div class="loading-message" *ngIf="loading">
+    <div class="spinner-border text-success"></div>
+    <p>Loading report...</p>
+  </div>
+
+  <!-- Error -->
+  <div class="error-message" *ngIf="errorMessage && !loading">
+    <i class="bi bi-exclamation-circle"></i>
+    {{ errorMessage }}
+  </div>
+
+  <!-- NORMAL SUPPLIER PURCHASE REPORT -->
+  <div
+    *ngIf="ReportType === 'supplier' &&
+           supplierReportType === 'normal' &&
+           !loading">
+
+    <div class="section-heading">
+      <h3>Normal Purchase Details</h3>
+      <span>{{ totalElements }} Records</span>
+    </div>
+
+    <div class="empty-state"
+         *ngIf="supplierPurchase.length === 0 && !errorMessage">
+      <i class="bi bi-inbox"></i>
+      <h4>No Purchase Records Found</h4>
+      <p>No purchases found for the selected date range.</p>
+    </div>
+
+    <div class="transaction-card"
+         *ngFor="let purchase of supplierPurchase">
+
+      <div class="transaction-header">
+
+        <div>
+          <h4>Vechicle Info: {{ purchase.vehicleNumber }}</h4>
+        </div>
+
+        <div class="transaction-date">
+          {{ purchase.entryDate | date:'dd MMM yyyy' }}
+        </div>
+
+      </div>
+
+      <div class="party-name">
+        Supplier: <strong>{{ purchase.suppliername }}</strong>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table report-table">
+
+          <thead>
+            <tr>
+              <th>Vegetable</th>
+              <th>KG</th>
+              <th>Purchase Price</th>
+              <th>Total Amount</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of purchase.purchaseItems">
+              <td>{{ item.vegetableName }}</td>
+              <td>{{ item.kg }}</td>
+              <td>₹{{ item.purchasePrice | number:'1.2-2' }}</td>
+              <td>₹{{ item.totalAmount | number:'1.2-2' }}</td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+
+      <div class="transaction-footer">
+        <span>Net Amount</span>
+        <strong>₹{{ purchase.netAmount | number:'1.2-2' }}</strong>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- COMMISSION SUPPLIER PURCHASE REPORT -->
+  <div
+    *ngIf="ReportType === 'supplier' &&
+           supplierReportType === 'commission' &&
+           !loading">
+
+    <div class="section-heading">
+      <h3>Commission Purchase Details</h3>
+      <span>{{ totalElements }} Records</span>
+    </div>
+
+    <div class="empty-state"
+         *ngIf="supplierCommissionPurchase.length === 0 && !errorMessage">
+      <i class="bi bi-inbox"></i>
+      <h4>No Commission Records Found</h4>
+      <p>No commission purchases found for the selected date range.</p>
+    </div>
+
+    <div class="transaction-card"
+         *ngFor="let purchase of supplierCommissionPurchase">
+
+      <div class="transaction-header">
+
+        <div>
+          <h4>{{ purchase.trucknumber }}</h4>
+          <span>Purchase ID: {{ purchase.id }}</span>
+        </div>
+
+        <div class="transaction-date">
+          {{ purchase.date | date:'dd MMM yyyy' }}
+        </div>
+
+      </div>
+
+      <div class="party-name">
+        Supplier: <strong>{{ purchase.suppliername }}</strong>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table report-table">
+
+          <thead>
+            <tr>
+              <th>Vegetable</th>
+              <th>Quantity</th>
+              <th>Rate</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of purchase.items">
+              <td>{{ item.vegetablename }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>₹{{ item.rate | number:'1.2-2' }}</td>
+              <td>₹{{ item.amount | number:'1.2-2' }}</td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+
+      <div class="charges-section">
+
+        <div>
+          <span>Commission</span>
+          <strong>{{ purchase.commission | number:'1.2-2' }}%</strong>
+        </div>
+
+        <div>
+          <span>Truck Charges</span>
+          <strong>₹{{ purchase.truckcharges | number:'1.2-2' }}</strong>
+        </div>
+
+        <div>
+          <span>Labour Charges</span>
+          <strong>₹{{ purchase.labourcharges | number:'1.2-2' }}</strong>
+        </div>
+
+        <div>
+          <span>Other Charges</span>
+          <strong>₹{{ purchase.othercharges | number:'1.2-2' }}</strong>
+        </div>
+
+      </div>
+
+      <div class="transaction-footer">
+        <span>Supplier Payable</span>
+        <strong>₹{{ purchase.supplierpayable | number:'1.2-2' }}</strong>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- CUSTOMER SALE REPORT -->
+  <div
+    *ngIf="ReportType === 'customer' && !loading">
+
+    <div class="section-heading">
+      <h3>Customer Sale Details</h3>
+      <span>{{ totalElements }} Records</span>
+    </div>
+
+    <div class="empty-state"
+         *ngIf="customerSale.length === 0 && !errorMessage">
+      <i class="bi bi-inbox"></i>
+      <h4>No Sale Records Found</h4>
+      <p>No sales found for the selected date range.</p>
+    </div>
+
+    <div class="transaction-card"
+         *ngFor="let sale of customerSale">
+
+      <div class="transaction-header">
+
+        <div>
+          <h4>Sale #{{ sale.saleId }}</h4>
+          <span>{{ sale.customername }}</span>
+        </div>
+
+        <div class="transaction-date">
+          {{ sale.saleDate | date:'dd MMM yyyy' }}
+        </div>
+
+      </div>
+
+      <div class="table-responsive">
+        <table class="table report-table">
+
+          <thead>
+            <tr>
+              <th>Vegetable</th>
+              <th>KG</th>
+              <th>Sale Price</th>
+              <th>Total Amount</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of sale.saleItems">
+              <td>{{ item.vegetableName }}</td>
+              <td>{{ item.kg }}</td>
+              <td>₹{{ item.salePrice | number:'1.2-2' }}</td>
+              <td>₹{{ item.totalAmount | number:'1.2-2' }}</td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+
+      <div class="transaction-footer">
+        <span>Total Sale Amount</span>
+        <strong>₹{{ sale.totalsaleAmount | number:'1.2-2' }}</strong>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- PAGINATION -->
+  <div class="pagination-container no-print"
+       *ngIf="totalPages > 0 && !loading">
+
+    <div class="pagination-info">
+      Showing page {{ currentPage + 1 }} of {{ totalPages }}
+      ({{ totalElements }} total records)
+    </div>
+
+    <div class="pagination-buttons">
+
+      <button
+        class="btn btn-outline-secondary"
+        [disabled]="currentPage === 0"
+        (click)="previousPage()">
+
+        <i class="bi bi-chevron-left"></i>
+        Previous
+
+      </button>
+
+      <span class="page-number">
+        {{ currentPage + 1 }}
+      </span>
+
+      <button
+        class="btn btn-primary"
+        [disabled]="currentPage >= totalPages - 1"
+        (click)="nextPage()">
+
+        Next
+        <i class="bi bi-chevron-right"></i>
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
