@@ -25,7 +25,7 @@
 
         <input
           type="email"
-          [(ngModel)]="user.email"
+          [(ngModel)]="username"
           placeholder="Enter your email"
         />
       </div>
@@ -42,7 +42,7 @@
 
         <input
           [type]="showPassword ? 'text' : 'password'"
-          [(ngModel)]="user.password"
+          [(ngModel)]="password"
           placeholder="Enter your password"
         />
 
@@ -57,9 +57,9 @@
    
 
     <!-- Login Button -->
-    <button class="login-btn" (click)="login()">
+    <button class="login-btn" (click)="login()" [disabled]="loading">
       <i class="bi bi-box-arrow-in-right"></i>
-      Login
+      {{ loading ? 'Logging in...' : 'Login' }}
     </button>
 
     <!-- Footer -->

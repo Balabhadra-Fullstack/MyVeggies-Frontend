@@ -26,6 +26,7 @@ import { CustomerDetailsComponent } from './Pages/customer-details/customer-deta
 import { SaleComponent } from './Pages/sale/sale.component';
 import { ViewPageComponent } from './Pages/view-page/view-page.component';
 import { ViewPaymentHistoryComponent } from './Pages/view-payment-history/view-payment-history.component';
+import { AuthinterceptorInterceptor } from './authinterceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,13 @@ import { ViewPaymentHistoryComponent } from './Pages/view-payment-history/view-p
      FormsModule,
     HttpClientModule
 ],
-  providers: [],
+  providers: [
+     {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthinterceptorInterceptor,
+    multi: true
+  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

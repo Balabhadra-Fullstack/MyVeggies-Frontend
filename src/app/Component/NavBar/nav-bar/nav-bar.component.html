@@ -1,25 +1,50 @@
+
 <nav class="navbar">
 
+  <!-- Left: Logo and Brand -->
   <div class="navbar-left">
 
-    <img
-      src="assets/ncm.logo.png"
-      alt="NCM"
-      class="navbar-logo"
-    >
+    <div class="logo-wrapper">
+      <img
+        src="assets/ncm.logo.png"
+        alt="NCM"
+        class="navbar-logo"
+      >
+    </div>
 
+    <div class="brand-info">
+      <h2>NCM <span>Fresh Market</span></h2>
+      <small>Vegetable Business Management</small>
+    </div>
 
   </div>
 
-
+  <!-- Right: User Profile and Logout -->
   <div class="navbar-right">
 
-    <span class="user-name">
-      Welcome, Nilanchala
-    </span>
+    <div class="welcome-section">
+
+      <div class="user-avatar">
+        N
+      </div>
+
+      <div class="user-details">
+        <span class="welcome-text">Welcome back,</span>
+        <strong>Nilanchala</strong>
+      </div>
+
+      <span class="online-indicator"></span>
+
+    </div>
+
+    <div class="navbar-divider"></div>
 
     <button class="logout-btn" (click)="logout()">
-      Logout
+
+      <span class="logout-icon">↪</span>
+
+      <span>Logout</span>
+
     </button>
 
   </div>

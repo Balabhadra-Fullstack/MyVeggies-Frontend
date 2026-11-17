@@ -19,12 +19,13 @@ import { CustomerDetailsComponent } from './Pages/customer-details/customer-deta
 import { ExistCustomerComponent } from './Pages/exist-customer/exist-customer.component';
 import { ViewPageComponent } from './Pages/view-page/view-page.component';
 import { ViewPaymentHistoryComponent } from './Pages/view-payment-history/view-payment-history.component';
+import { authGuardGuard } from './auth-guard.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
-    path: '', component: LayoutComponent, children: [
+    path: '', component: LayoutComponent, canActivate: [authGuardGuard], children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'Supplier', component: SupplierComponent },
       { path: 'Purchase', component: PurchaseComponent },
